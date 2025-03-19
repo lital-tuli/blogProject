@@ -3,10 +3,6 @@ from django_filters.rest_framework import DjangoFilterBackend
 from .models import Article
 from .serializers import ArticleSerializer
 from core.permissions import IsAdminUserOrReadOnly
-from rest_framework.decorators import action
-from rest_framework.response import Response
-from comments.serializers import CommentSerializer
-from comments.models import Comment
 
 class ArticleViewSet(viewsets.ModelViewSet):
     queryset = Article.objects.all()
@@ -18,12 +14,20 @@ class ArticleViewSet(viewsets.ModelViewSet):
     ordering_fields = ['publication_date', 'title']
     ordering = ['-publication_date']
     
+    def get_queryset(self):
+        queryset = Article.objects.all()
+        
+        # Handle specific tag filtering
+        tag = self.request.query_params.get('tag', None)
+        if tag:
+            queryset = queryset.filter(tags__name__icontains=tag)
+            
+        # Handle author filtering
+        author = self.request.query_params.get('author', None)
+        if author:
+            queryset = queryset.filter(author__username__icontains=author)
+            
+        return queryset
+    
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
-        
-    @action(detail=True, methods=['get'])
-    def comments(self, request, pk=None):
-        article = self.get_object()
-        comments = Comment.objects.filter(article=article)
-        serializer = CommentSerializer(comments, many=True)
-        return Response(serializer.data)

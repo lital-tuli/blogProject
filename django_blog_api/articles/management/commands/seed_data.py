@@ -13,14 +13,16 @@ class Command(BaseCommand):
         self.stdout.write('Seeding database...')
         
         # Create user groups
-        create_user_groups()
+        groups = create_user_groups()
         
-        # Create admin user
+        # Create admin user (management)
         admin_user, created = User.objects.get_or_create(
             username='admin',
             email='admin@example.com',
-            is_staff=True,
-            is_superuser=True
+            defaults={
+                'is_staff': True,
+                'is_superuser': True
+            }
         )
         
         if created:
@@ -28,8 +30,20 @@ class Command(BaseCommand):
             admin_user.save()
             self.stdout.write(f'Created admin user: {admin_user.username}')
         
-        admin_group = Group.objects.get(name='admin_users')
-        admin_user.groups.add(admin_group)
+        admin_user.groups.add(groups['management'])
+        
+        # Create editor user
+        editor_user, created = User.objects.get_or_create(
+            username='editor',
+            email='editor@example.com'
+        )
+        
+        if created:
+            editor_user.set_password('editor1234')
+            editor_user.save()
+            self.stdout.write(f'Created editor user: {editor_user.username}')
+        
+        editor_user.groups.add(groups['editors'])
         
         # Create regular user
         regular_user, created = User.objects.get_or_create(
@@ -42,8 +56,7 @@ class Command(BaseCommand):
             regular_user.save()
             self.stdout.write(f'Created regular user: {regular_user.username}')
         
-        regular_group = Group.objects.get(name='regular_users')
-        regular_user.groups.add(regular_group)
+        regular_user.groups.add(groups['users'])
         
         # Create sample articles
         article1, created = Article.objects.get_or_create(
@@ -88,5 +101,5 @@ class Command(BaseCommand):
         
         if created:
             self.stdout.write(f'Created comment on article: {article2.title}')
-            
+        
         self.stdout.write(self.style.SUCCESS('Database seeding completed successfully!'))
