@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'django_filters',
     'corsheaders',
     'taggit',
+    'drf_yasg',
     
     # Custom apps
     'users',
