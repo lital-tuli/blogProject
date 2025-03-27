@@ -58,6 +58,19 @@ class Command(BaseCommand):
         
         regular_user.groups.add(groups['users'])
         
+        # Create a second regular user
+        regular_user2, created = User.objects.get_or_create(
+            username='user2',
+            email='user2@example.com'
+        )
+        
+        if created:
+            regular_user2.set_password('user1234')
+            regular_user2.save()
+            self.stdout.write(f'Created second regular user: {regular_user2.username}')
+        
+        regular_user2.groups.add(groups['users'])
+        
         # Create sample articles
         article1, created = Article.objects.get_or_create(
             title='First Article',
@@ -83,7 +96,7 @@ class Command(BaseCommand):
             article2.tags.add('python', 'advanced', 'web')
             self.stdout.write(f'Created article: {article2.title}')
         
-        # Create sample comments
+        # Create sample comments for article 1
         comment1, created = Comment.objects.get_or_create(
             author=regular_user,
             article=article1,
@@ -91,15 +104,34 @@ class Command(BaseCommand):
         )
         
         if created:
-            self.stdout.write(f'Created comment on article: {article1.title}')
+            self.stdout.write(f'Created first comment on article: {article1.title}')
         
         comment2, created = Comment.objects.get_or_create(
-            author=regular_user,
-            article=article2,
-            content='Thanks for sharing this information!'
+            author=regular_user2,
+            article=article1,
+            content='Thanks for sharing this information! I learned a lot from it.'
         )
         
         if created:
-            self.stdout.write(f'Created comment on article: {article2.title}')
+            self.stdout.write(f'Created second comment on article: {article1.title}')
+        
+        # Create sample comments for article 2
+        comment3, created = Comment.objects.get_or_create(
+            author=regular_user,
+            article=article2,
+            content='This is really helpful for beginners like me.'
+        )
+        
+        if created:
+            self.stdout.write(f'Created first comment on article: {article2.title}')
+        
+        comment4, created = Comment.objects.get_or_create(
+            author=regular_user2,
+            article=article2,
+            content='I would love to see more advanced topics covered in the future!'
+        )
+        
+        if created:
+            self.stdout.write(f'Created second comment on article: {article2.title}')
         
         self.stdout.write(self.style.SUCCESS('Database seeding completed successfully!'))

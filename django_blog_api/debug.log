@@ -30,3 +30,44 @@ INFO 2025-03-26 15:43:44,057 basehttp 41272 9976 "GET /api/articles/1/ HTTP/1.1"
 INFO 2025-03-26 15:43:44,070 basehttp 41272 34732 "GET /api/articles/1/comments/ HTTP/1.1" 200 192
 INFO 2025-03-26 15:43:44,169 basehttp 41272 31496 "GET /api/articles/1/ HTTP/1.1" 200 327
 INFO 2025-03-26 15:43:44,183 basehttp 41272 9976 "GET /api/articles/1/comments/ HTTP/1.1" 200 192
+INFO 2025-03-27 16:33:52,400 basehttp 41272 40864 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 711
+INFO 2025-03-27 16:33:52,525 basehttp 41272 1364 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 711
+INFO 2025-03-27 16:37:34,068 autoreload 31420 51272 Watching for file changes with StatReloader
+INFO 2025-03-27 16:41:20,944 basehttp 31420 30960 "POST /api/auth/token/ HTTP/1.1" 200 483
+INFO 2025-03-27 16:41:23,326 basehttp 31420 56960 "GET /api/articles/ HTTP/1.1" 200 711
+INFO 2025-03-27 16:41:25,504 basehttp 31420 14928 "GET /api/articles/?search=django HTTP/1.1" 200 379
+INFO 2025-03-27 16:41:27,781 basehttp 31420 25392 "GET /api/articles/?tag=python HTTP/1.1" 200 383
+INFO 2025-03-27 16:41:30,029 basehttp 31420 19364 "GET /api/articles/?author=admin HTTP/1.1" 200 711
+WARNING 2025-03-27 16:41:32,119 log 31420 38624 Forbidden: /api/articles/
+WARNING 2025-03-27 16:41:32,120 basehttp 31420 38624 "POST /api/articles/ HTTP/1.1" 403 63
+WARNING 2025-03-27 16:41:34,223 log 31420 32792 Forbidden: /api/articles/1/comments/
+WARNING 2025-03-27 16:41:34,224 basehttp 31420 32792 "POST /api/articles/1/comments/ HTTP/1.1" 403 63
+INFO 2025-03-27 16:48:15,383 basehttp 31420 50996 "POST /api/auth/token/ HTTP/1.1" 200 483
+INFO 2025-03-27 16:48:17,530 basehttp 31420 11780 "GET /api/articles/ HTTP/1.1" 200 711
+INFO 2025-03-27 16:48:19,659 basehttp 31420 50960 "GET /api/articles/?search=django HTTP/1.1" 200 379
+INFO 2025-03-27 16:48:21,765 basehttp 31420 59024 "GET /api/articles/?tag=python HTTP/1.1" 200 383
+INFO 2025-03-27 16:48:24,000 basehttp 31420 37148 "GET /api/articles/?author=admin HTTP/1.1" 200 711
+WARNING 2025-03-27 16:48:26,223 log 31420 52632 Forbidden: /api/articles/1/comments/
+WARNING 2025-03-27 16:48:26,224 basehttp 31420 52632 "POST /api/articles/1/comments/ HTTP/1.1" 403 63
+INFO 2025-03-27 16:48:29,159 basehttp 31420 14144 "POST /api/auth/token/ HTTP/1.1" 200 483
+INFO 2025-03-27 16:48:31,295 basehttp 31420 54680 "POST /api/articles/ HTTP/1.1" 201 364
+WARNING 2025-03-27 16:48:33,414 log 31420 40812 Method Not Allowed: /api/articles/3/comments/
+WARNING 2025-03-27 16:48:33,415 basehttp 31420 40812 "POST /api/articles/3/comments/ HTTP/1.1" 405 41
+INFO 2025-03-27 17:00:45,213 autoreload 31420 51272 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\comments\urls.py changed, reloading.
+INFO 2025-03-27 17:00:47,349 autoreload 45320 30612 Watching for file changes with StatReloader
+INFO 2025-03-27 17:01:56,425 autoreload 45320 30612 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\comments\views.py changed, reloading.
+INFO 2025-03-27 17:01:57,835 autoreload 56784 27340 Watching for file changes with StatReloader
+INFO 2025-03-27 17:03:12,801 autoreload 56784 27340 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\comments\serializers.py changed, reloading.
+INFO 2025-03-27 17:03:14,020 autoreload 52876 57372 Watching for file changes with StatReloader
+INFO 2025-03-27 17:03:35,834 autoreload 52876 57372 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\comments\urls.py changed, reloading.
+INFO 2025-03-27 17:03:36,996 autoreload 21564 38176 Watching for file changes with StatReloader
+INFO 2025-03-27 17:04:10,489 basehttp 21564 53128 "POST /api/auth/token/ HTTP/1.1" 200 483
+INFO 2025-03-27 17:04:12,780 basehttp 21564 8564 "GET /api/articles/ HTTP/1.1" 200 1076
+INFO 2025-03-27 17:04:14,976 basehttp 21564 46100 "GET /api/articles/?search=django HTTP/1.1" 200 379
+INFO 2025-03-27 17:04:17,144 basehttp 21564 13964 "GET /api/articles/?tag=python HTTP/1.1" 200 383
+INFO 2025-03-27 17:04:19,325 basehttp 21564 13828 "GET /api/articles/?author=admin HTTP/1.1" 200 1076
+WARNING 2025-03-27 17:04:21,581 log 21564 34256 Forbidden: /api/articles/1/comments/
+WARNING 2025-03-27 17:04:21,582 basehttp 21564 34256 "POST /api/articles/1/comments/ HTTP/1.1" 403 63
+INFO 2025-03-27 17:04:24,583 basehttp 21564 52060 "POST /api/auth/token/ HTTP/1.1" 200 483
+WARNING 2025-03-27 17:04:26,733 log 21564 4772 Bad Request: /api/articles/
+WARNING 2025-03-27 17:04:26,734 basehttp 21564 4772 "POST /api/articles/ HTTP/1.1" 400 53
