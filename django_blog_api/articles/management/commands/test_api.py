@@ -179,12 +179,16 @@ def test_create_article():
         print_fail("No authentication token available. Please login first.")
         return None
     
-    # Create an article
+    import datetime
+    unique_suffix = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+    title = f"Test Article via API Script {unique_suffix}"
+    
     data = {
-        "title": "Test Article via API Script",
+        "title": title,
         "content": "This is a test article created through our API testing script. It should demonstrate that article creation works correctly.",
         "tags": ["test", "api", "automation"]
     }
+    
     
     url = f"{BASE_URL}/articles/"
     headers = {"Authorization": f"Bearer {TOKEN}"}

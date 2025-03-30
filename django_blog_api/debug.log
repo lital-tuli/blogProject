@@ -251,3 +251,32 @@ INFO 2025-03-30 11:54:19,753 autoreload 27476 44024 C:\Users\lital\OneDrive\שולח
 INFO 2025-03-30 11:54:20,711 autoreload 29052 42060 Watching for file changes with StatReloader
 INFO 2025-03-30 11:54:40,561 autoreload 29052 42060 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\blog_project\settings.py changed, reloading.
 INFO 2025-03-30 11:54:41,806 autoreload 3932 28528 Watching for file changes with StatReloader
+INFO 2025-03-30 12:00:03,859 autoreload 50432 55388 Watching for file changes with StatReloader
+WARNING 2025-03-30 12:00:12,585 log 50432 31888 Not Found: /
+WARNING 2025-03-30 12:00:12,586 basehttp 50432 31888 "GET / HTTP/1.1" 404 3338
+INFO 2025-03-30 12:00:32,281 basehttp 50432 52520 "POST /api/auth/token/ HTTP/1.1" 200 483
+INFO 2025-03-30 12:00:34,451 basehttp 50432 23388 "GET /api/articles/ HTTP/1.1" 200 1076
+INFO 2025-03-30 12:00:36,579 basehttp 50432 55708 "GET /api/articles/?search=django HTTP/1.1" 200 379
+INFO 2025-03-30 12:00:38,721 basehttp 50432 19320 "GET /api/articles/?tag=python HTTP/1.1" 200 383
+INFO 2025-03-30 12:00:40,865 basehttp 50432 58856 "GET /api/articles/?author=admin HTTP/1.1" 200 1076
+WARNING 2025-03-30 12:00:42,988 log 50432 57944 Forbidden: /api/articles/1/comments/
+WARNING 2025-03-30 12:00:42,989 basehttp 50432 57944 "POST /api/articles/1/comments/ HTTP/1.1" 403 63
+INFO 2025-03-30 12:00:46,120 basehttp 50432 47624 "POST /api/auth/token/ HTTP/1.1" 200 483
+WARNING 2025-03-30 12:00:48,365 log 50432 13868 Bad Request: /api/articles/
+WARNING 2025-03-30 12:00:48,366 basehttp 50432 13868 "POST /api/articles/ HTTP/1.1" 400 53
+INFO 2025-03-30 12:03:05,177 autoreload 50432 55388 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\comments\views.py changed, reloading.
+INFO 2025-03-30 12:03:06,209 autoreload 31616 39668 Watching for file changes with StatReloader
+INFO 2025-03-30 12:03:12,032 autoreload 31616 39668 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\comments\views.py changed, reloading.
+INFO 2025-03-30 12:03:12,940 autoreload 39200 40324 Watching for file changes with StatReloader
+INFO 2025-03-30 12:04:05,528 autoreload 39200 40324 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\blog_project\settings.py changed, reloading.
+INFO 2025-03-30 12:04:06,531 autoreload 2600 46388 Watching for file changes with StatReloader
+INFO 2025-03-30 12:04:09,817 autoreload 2600 46388 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\blog_project\settings.py changed, reloading.
+INFO 2025-03-30 12:04:10,774 autoreload 54280 53856 Watching for file changes with StatReloader
+INFO 2025-03-30 12:05:49,478 autoreload 54280 53856 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\users\models.py changed, reloading.
+INFO 2025-03-30 12:05:50,468 autoreload 49772 58332 Watching for file changes with StatReloader
+INFO 2025-03-30 12:05:53,681 autoreload 49772 58332 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\users\models.py changed, reloading.
+INFO 2025-03-30 12:05:54,958 autoreload 16416 38500 Watching for file changes with StatReloader
+INFO 2025-03-30 12:06:19,214 autoreload 16416 38500 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\blog_project\settings.py changed, reloading.
+INFO 2025-03-30 12:06:20,379 autoreload 43928 55236 Watching for file changes with StatReloader
+INFO 2025-03-30 12:07:34,193 autoreload 43928 55236 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\comments\serializers.py changed, reloading.
+INFO 2025-03-30 12:07:35,084 autoreload 54376 48108 Watching for file changes with StatReloader

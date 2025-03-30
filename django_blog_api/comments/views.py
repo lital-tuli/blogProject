@@ -1,21 +1,13 @@
 from rest_framework import viewsets, permissions, status
 from rest_framework.response import Response
-from rest_framework.decorators import action
 from django.shortcuts import get_object_or_404
 from articles.models import Article
 from .models import Comment
 from .serializers import CommentSerializer
-from core.permissions import IsAdminOrAuthorOrReadOnly
 
 class CommentViewSet(viewsets.ModelViewSet):
     """
     ViewSet for handling comment operations.
-    
-    Provides CRUD operations for comments with appropriate permissions:
-    - List/Retrieve: Available to all users
-    - Create: Available to authenticated users
-    - Update: Limited to the comment author
-    - Delete: Limited to admin users
     """
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
@@ -29,17 +21,13 @@ class CommentViewSet(viewsets.ModelViewSet):
         - Users can only edit their own comments
         """
         if self.action in ['list', 'retrieve']:
-            # Allow anyone to view comments
             return [permissions.AllowAny()]
         elif self.action == 'create':
-            # Only authenticated users can create comments
             return [permissions.IsAuthenticated()]
         elif self.action == 'destroy':
-            # Only admin users can delete comments
             return [permissions.IsAdminUser()]
         else:
-            # For update/partial_update, use IsAuthenticated
-            return [permissions.IsAuthenticated(), IsAdminOrAuthorOrReadOnly()]
+            return [permissions.IsAuthenticated()]
     
     def perform_create(self, serializer):
         """

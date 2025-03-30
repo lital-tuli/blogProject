@@ -12,12 +12,10 @@ class CommentSerializer(serializers.ModelSerializer):
         read_only_fields = ('author', 'created_at')
     
     def get_replies(self, obj):
-        # Only fetch direct replies to this comment
-        if 'request' in self.context:
-            replies = obj.replies.all()
-            serializer = CommentSerializer(replies, many=True, context=self.context)
-            return serializer.data
-        return []
+        """Get replies to this comment"""
+        replies = Comment.objects.filter(reply_to=obj)
+        serializer = CommentSerializer(replies, many=True, context=self.context)
+        return serializer.data
     
     def validate_content(self, value):
         """
