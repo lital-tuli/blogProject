@@ -16,22 +16,21 @@ def get_user_profile(request):
 class RegisterView(APIView):
     permission_classes = [AllowAny]
     
-    def post(self, request):
-        serializer = UserSerializer(data=request.data)
-        if serializer.is_valid():
-            user = serializer.save()
-            
-            # Add user to regular users group
-            regular_users, _ = Group.objects.get_or_create(name='regular_users')
-            user.groups.add(regular_users)
-            
-            # Generate tokens
-            refresh = RefreshToken.for_user(user)
-            
-            return Response({
-                'user': serializer.data,
-                'refresh': str(refresh),
-                'access': str(refresh.access_token),
-            }, status=status.HTTP_201_CREATED)
+def post(self, request):
+    serializer = UserSerializer(data=request.data)
+    if serializer.is_valid():
+        user = serializer.save()
+        
+        users_group, _ = Group.objects.get_or_create(name='users')
+        user.groups.add(users_group)
+        
+        # Generate tokens
+        refresh = RefreshToken.for_user(user)
+        
+        return Response({
+            'user': serializer.data,
+            'refresh': str(refresh),
+            'access': str(refresh.access_token),
+        }, status=status.HTTP_201_CREATED)
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -6,6 +6,7 @@ urlpatterns = [
         'get': 'list',
         'post': 'create'
     }), name='article-comments'),
+ 
     path('comments/<int:pk>/', CommentViewSet.as_view({
         'get': 'retrieve',
         'put': 'update',

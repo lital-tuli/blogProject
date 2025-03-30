@@ -21,26 +21,21 @@ def create_user_groups():
     # Set permissions for editors (can create/edit/delete articles)
     for perm in article_permissions:
         editors_group.permissions.add(perm)
-    
+
     # Set permissions for management (can do everything)
     for perm in article_permissions:
         management_group.permissions.add(perm)
     for perm in comment_permissions:
-        management_group.permissions.add(perm)
-    
-    # Set permissions for regular users (can add/edit their own comments)
-    # Adding all comment permissions except delete
-    for perm in comment_permissions:
         if perm.codename != 'delete_comment':
             users_group.permissions.add(perm)
-    
+
     # Make sure view permissions for articles are added to users
     view_article_perm = Permission.objects.get(
         codename='view_article',
         content_type=article_content_type
     )
     users_group.permissions.add(view_article_perm)
-    
+
     return {
         'editors': editors_group,
         'users': users_group,
