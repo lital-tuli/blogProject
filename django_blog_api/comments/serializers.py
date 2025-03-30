@@ -10,20 +10,11 @@ class RecursiveCommentSerializer(serializers.Serializer):
         return serializer.data
 
 class CommentSerializer(serializers.ModelSerializer):
-    """
-    Serializer for the Comment model.
-    
-    Includes additional fields:
-    - author_username: The username of the comment author
-    - replies: Nested serialization of replies to this comment
-    """
     author_username = serializers.ReadOnlyField(source='author.username')
-    replies = RecursiveCommentSerializer(many=True, read_only=True)
     
     class Meta:
         model = Comment
-        fields = ('id', 'article', 'content', 'author', 'author_username', 
-                  'created_at', 'reply_to', 'replies')
+        fields = ('id', 'content', 'author', 'author_username', 'created_at', 'article')
         read_only_fields = ('author', 'created_at')
     
     def validate_content(self, value):
@@ -49,4 +40,3 @@ class CommentSerializer(serializers.ModelSerializer):
                     "Reply must be to a comment on the same article"
                 )
         return value
-
