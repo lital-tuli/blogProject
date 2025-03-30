@@ -1,5 +1,6 @@
 from rest_framework import viewsets, permissions, status
 from rest_framework.response import Response
+from rest_framework.decorators import action  # Add this import
 from django.shortcuts import get_object_or_404
 from articles.models import Article
 from .models import Comment
@@ -43,35 +44,15 @@ class CommentViewSet(viewsets.ModelViewSet):
             serializer.save(author=self.request.user, article=article, reply_to=reply_to)
         else:
             serializer.save(author=self.request.user, article=article)
-
-    def perform_update(self, serializer):
-        """
-        Only allow users to update their own comments
-        """
-        instance = self.get_object()
-        if instance.author != self.request.user and not self.request.user.is_staff:
-            self.permission_denied(
-                self.request,
-                message="You can only edit your own comments."
-            )
-        serializer.save()
-
+    
     def get_queryset(self):
         """
         Filters comments by article if article_pk is provided in the URL.
-        Also only shows top-level comments (no replies) when listing.
         """
-        queryset = Comment.objects.all()
-        
         article_id = self.kwargs.get('article_pk')
         if article_id:
-            queryset = queryset.filter(article__id=article_id)
-            
-        # If this is a list action, only return top-level comments
-        if self.action == 'list':
-            queryset = queryset.filter(reply_to__isnull=True)
-            
-        return queryset
+            return Comment.objects.filter(article__id=article_id)
+        return Comment.objects.all()
     
     @action(detail=True, methods=['post'])
     def reply(self, request, pk=None):
