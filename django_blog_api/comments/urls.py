@@ -13,4 +13,8 @@ urlpatterns = [
         'patch': 'partial_update',
         'delete': 'destroy'
     }), name='comment-detail'),
+    
+    path('comments/<int:pk>/reply/', CommentViewSet.as_view({
+        'post': 'reply'
+    }), name='comment-reply'),
 ]

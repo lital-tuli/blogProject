@@ -1,7 +1,15 @@
+
+
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
 from rest_framework.validators import UniqueValidator
+from .models import Profile
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ('bio', 'birth_date', 'profile_pic', 'created_at')
 
 class UserSerializer(serializers.ModelSerializer):
     """
@@ -19,10 +27,14 @@ class UserSerializer(serializers.ModelSerializer):
         validators=[validate_password]
     )
     password2 = serializers.CharField(write_only=True, required=True)
+    profile = ProfileSerializer(required=False, read_only=True)
     
     class Meta:
         model = User
-        fields = ('id', 'username', 'email', 'password', 'password2')
+        fields = ('id', 'username', 'email', 'password', 'password2', 'profile')
+        extra_kwargs = {
+            'username': {'required': True}
+        }
     
     def validate(self, attrs):
         """

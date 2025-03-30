@@ -199,3 +199,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Taggit settings
 TAGGIT_CASE_INSENSITIVE = True
+
+# Media files (user uploads)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+

@@ -1,21 +1,23 @@
+# django_blog_api/comments/serializers.py
 from rest_framework import serializers
 from .models import Comment
 
-class RecursiveCommentSerializer(serializers.Serializer):
-    """
-    A serializer that recursively serializes replies to comments.
-    """
-    def to_representation(self, instance):
-        serializer = self.parent.parent.__class__(instance, context=self.context)
-        return serializer.data
-
 class CommentSerializer(serializers.ModelSerializer):
     author_username = serializers.ReadOnlyField(source='author.username')
+    replies = serializers.SerializerMethodField()
     
     class Meta:
         model = Comment
-        fields = ('id', 'content', 'author', 'author_username', 'created_at', 'article')
+        fields = ('id', 'content', 'author', 'author_username', 'created_at', 'article', 'reply_to', 'replies')
         read_only_fields = ('author', 'created_at')
+    
+    def get_replies(self, obj):
+        # Only fetch direct replies to this comment
+        if 'request' in self.context:
+            replies = obj.replies.all()
+            serializer = CommentSerializer(replies, many=True, context=self.context)
+            return serializer.data
+        return []
     
     def validate_content(self, value):
         """
