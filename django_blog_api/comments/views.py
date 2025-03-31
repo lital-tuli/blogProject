@@ -1,6 +1,6 @@
 from rest_framework import viewsets, permissions, status
 from rest_framework.response import Response
-from rest_framework.decorators import action  # Add this import
+from rest_framework.decorators import action
 from django.shortcuts import get_object_or_404
 from articles.models import Article
 from .models import Comment
@@ -23,36 +23,54 @@ class CommentViewSet(viewsets.ModelViewSet):
         """
         if self.action in ['list', 'retrieve']:
             return [permissions.AllowAny()]
-        elif self.action == 'create':
+        elif self.action in ['create', 'reply']:
             return [permissions.IsAuthenticated()]
         elif self.action == 'destroy':
             return [permissions.IsAdminUser()]
         else:
             return [permissions.IsAuthenticated()]
     
-    def perform_create(self, serializer):
+    def create(self, request, *args, **kwargs):
         """
-        Sets the author to the current user and the article based on URL parameter.
+        Create a new comment for an article.
         """
         article_id = self.kwargs.get('article_pk')
+        if not article_id:
+            return Response(
+                {"detail": "Article ID is required to create a comment."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+            
         article = get_object_or_404(Article, id=article_id)
         
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        
         # Check if this is a reply to another comment
-        reply_to_id = self.request.data.get('reply_to')
+        reply_to_id = request.data.get('reply_to')
         if reply_to_id:
             reply_to = get_object_or_404(Comment, id=reply_to_id)
-            serializer.save(author=self.request.user, article=article, reply_to=reply_to)
+            serializer.save(author=request.user, article=article, reply_to=reply_to)
         else:
-            serializer.save(author=self.request.user, article=article)
+            serializer.save(author=request.user, article=article)
+            
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
     
     def get_queryset(self):
         """
         Filters comments by article if article_pk is provided in the URL.
         """
+        queryset = Comment.objects.all()
+        
         article_id = self.kwargs.get('article_pk')
         if article_id:
-            return Comment.objects.filter(article__id=article_id)
-        return Comment.objects.all()
+            queryset = queryset.filter(article__id=article_id)
+            
+        # If this is a list action, only return top-level comments
+        if self.action == 'list':
+            queryset = queryset.filter(reply_to__isnull=True)
+            
+        return queryset
     
     @action(detail=True, methods=['post'])
     def reply(self, request, pk=None):

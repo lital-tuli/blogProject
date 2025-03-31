@@ -1,4 +1,3 @@
-# django_blog_api/comments/serializers.py
 from rest_framework import serializers
 from .models import Comment
 
@@ -9,13 +8,15 @@ class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = ('id', 'content', 'author', 'author_username', 'created_at', 'article', 'reply_to', 'replies')
-        read_only_fields = ('author', 'created_at')
+        read_only_fields = ('author', 'created_at', 'article') # Make article read-only so we can set it in the view
     
     def get_replies(self, obj):
         """Get replies to this comment"""
         replies = Comment.objects.filter(reply_to=obj)
-        serializer = CommentSerializer(replies, many=True, context=self.context)
-        return serializer.data
+        if replies.exists():
+            serializer = CommentSerializer(replies, many=True, context=self.context)
+            return serializer.data
+        return []  # Removed the redundant return statement
     
     def validate_content(self, value):
         """
@@ -35,7 +36,7 @@ class CommentSerializer(serializers.ModelSerializer):
         """
         if value and 'article' in self.initial_data:
             article_id = self.initial_data.get('article')
-            if value.article.id != int(article_id):
+            if value.article and value.article.id != int(article_id):  # Added a check for value.article
                 raise serializers.ValidationError(
                     "Reply must be to a comment on the same article"
                 )

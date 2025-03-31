@@ -14,7 +14,6 @@ urlpatterns = [
         'delete': 'destroy'
     }), name='comment-detail'),
     
-    # Add the reply endpoint
     path('comments/<int:pk>/reply/', CommentViewSet.as_view({
         'post': 'reply'
     }), name='comment-reply'),
