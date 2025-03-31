@@ -341,3 +341,32 @@ INFO 2025-03-31 15:42:03,026 basehttp 21136 22644 "POST /api/auth/token/ HTTP/1.
 INFO 2025-03-31 15:42:05,317 basehttp 21136 9764 "POST /api/articles/ HTTP/1.1" 201 369
 WARNING 2025-03-31 15:42:07,422 log 21136 23832 Method Not Allowed: /api/articles/5/comments/
 WARNING 2025-03-31 15:42:07,423 basehttp 21136 23832 "POST /api/articles/5/comments/ HTTP/1.1" 405 41
+INFO 2025-03-31 15:46:39,158 autoreload 21136 23888 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\comments\views.py changed, reloading.
+INFO 2025-03-31 15:46:42,666 autoreload 22076 15144 Watching for file changes with StatReloader
+INFO 2025-03-31 15:47:09,662 autoreload 22076 15144 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\comments\urls.py changed, reloading.
+INFO 2025-03-31 15:47:10,830 autoreload 23316 23948 Watching for file changes with StatReloader
+INFO 2025-03-31 15:47:39,255 autoreload 23316 23948 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\blog_project\settings.py changed, reloading.
+INFO 2025-03-31 15:47:40,500 autoreload 21148 2824 Watching for file changes with StatReloader
+INFO 2025-03-31 15:48:16,068 basehttp 21148 19388 "POST /api/auth/token/ HTTP/1.1" 200 483
+INFO 2025-03-31 15:48:18,256 basehttp 21148 24020 "GET /api/articles/ HTTP/1.1" 200 1826
+INFO 2025-03-31 15:48:20,395 basehttp 21148 14280 "GET /api/articles/?search=django HTTP/1.1" 200 379
+INFO 2025-03-31 15:48:22,525 basehttp 21148 23948 "GET /api/articles/?tag=python HTTP/1.1" 200 383
+INFO 2025-03-31 15:48:24,705 basehttp 21148 7536 "GET /api/articles/?author=admin HTTP/1.1" 200 1826
+WARNING 2025-03-31 15:48:26,838 log 21148 23340 Forbidden: /api/articles/1/comments/
+WARNING 2025-03-31 15:48:26,839 basehttp 21148 23340 "POST /api/articles/1/comments/ HTTP/1.1" 403 63
+INFO 2025-03-31 15:48:29,943 basehttp 21148 18312 "POST /api/auth/token/ HTTP/1.1" 200 483
+INFO 2025-03-31 15:48:32,164 basehttp 21148 23964 "POST /api/articles/ HTTP/1.1" 201 369
+WARNING 2025-03-31 15:48:34,395 log 21148 20612 Method Not Allowed: /api/articles/6/comments/
+WARNING 2025-03-31 15:48:34,396 basehttp 21148 20612 "POST /api/articles/6/comments/ HTTP/1.1" 405 41
+INFO 2025-03-31 15:53:00,095 autoreload 21148 2824 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\comments\urls.py changed, reloading.
+INFO 2025-03-31 15:53:02,018 autoreload 14988 23832 Watching for file changes with StatReloader
+INFO 2025-03-31 15:53:09,567 autoreload 14988 23832 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\comments\urls.py changed, reloading.
+INFO 2025-03-31 15:53:10,954 autoreload 8512 8760 Watching for file changes with StatReloader
+INFO 2025-03-31 15:55:05,050 autoreload 8512 8760 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\comments\views.py changed, reloading.
+INFO 2025-03-31 15:55:06,136 autoreload 23964 20612 Watching for file changes with StatReloader
+INFO 2025-03-31 15:55:52,983 autoreload 23964 20612 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\comments\views.py changed, reloading.
+INFO 2025-03-31 15:55:54,208 autoreload 21960 20560 Watching for file changes with StatReloader
+INFO 2025-03-31 15:57:08,117 autoreload 21960 20560 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\comments\views.py changed, reloading.
+INFO 2025-03-31 15:57:09,308 autoreload 8396 8964 Watching for file changes with StatReloader
+INFO 2025-03-31 15:58:27,161 autoreload 8396 8964 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\comments\views.py changed, reloading.
+INFO 2025-03-31 15:58:28,862 autoreload 22992 8360 Watching for file changes with StatReloader
