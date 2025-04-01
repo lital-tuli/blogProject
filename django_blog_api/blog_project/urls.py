@@ -31,12 +31,14 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('admin/', admin.site.urls),
    
-    path('auth/', include('users.urls')),
+    # Prefix all auth endpoints with 'api/' for consistency
+    path('api/auth/', include('users.urls')),
+    
+    # These paths already have 'api/' prefix
     path('api/', include('articles.urls')),
     path('api/', include('comments.urls')),
-    # ...
 
-    # Swagger documentation with better naming
+    # Swagger documentation
     re_path(r'^api/docs(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     re_path(r'^api/docs/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     re_path(r'^api/redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),

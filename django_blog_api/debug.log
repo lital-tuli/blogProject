@@ -764,3 +764,114 @@ WARNING 2025-04-01 21:27:26,600 log 11208 8248 Not Found: /api/auth/register/
 WARNING 2025-04-01 21:27:26,601 basehttp 11208 8248 "POST /api/auth/register/ HTTP/1.1" 404 10183
 WARNING 2025-04-01 21:27:55,453 log 11208 996 Not Found: /api/auth/register/
 WARNING 2025-04-01 21:27:55,454 basehttp 11208 996 "POST /api/auth/register/ HTTP/1.1" 404 10183
+INFO 2025-04-01 21:42:52,502 autoreload 11208 10568 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\blog_project\urls.py changed, reloading.
+INFO 2025-04-01 21:42:53,868 autoreload 4404 12292 Watching for file changes with StatReloader
+INFO 2025-04-01 21:42:58,703 autoreload 4404 12292 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\blog_project\urls.py changed, reloading.
+INFO 2025-04-01 21:42:59,791 autoreload 16924 21064 Watching for file changes with StatReloader
+INFO 2025-04-01 21:43:29,039 autoreload 16924 21064 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\users\urls.py changed, reloading.
+INFO 2025-04-01 21:43:29,980 autoreload 8876 10128 Watching for file changes with StatReloader
+INFO 2025-04-01 21:43:52,205 autoreload 8876 10128 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\articles\urls.py changed, reloading.
+INFO 2025-04-01 21:43:53,190 autoreload 14188 9496 Watching for file changes with StatReloader
+INFO 2025-04-01 21:44:12,145 autoreload 14188 9496 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\comments\urls.py changed, reloading.
+INFO 2025-04-01 21:44:13,126 autoreload 13192 21904 Watching for file changes with StatReloader
+INFO 2025-04-01 21:44:15,632 autoreload 13192 21904 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\comments\urls.py changed, reloading.
+INFO 2025-04-01 21:44:16,813 autoreload 8812 12360 Watching for file changes with StatReloader
+INFO 2025-04-01 21:46:01,966 basehttp 8812 1404 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 21:46:02,167 basehttp 8812 1404 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 21:46:05,713 basehttp 8812 7088 "GET /api/articles/?page=1&ordering=-publication_date HTTP/1.1" 200 3961
+INFO 2025-04-01 21:46:05,814 basehttp 8812 7088 "GET /api/articles/?page=1&ordering=-publication_date HTTP/1.1" 200 3961
+INFO 2025-04-01 21:46:11,675 basehttp 8812 7088 "GET /api/articles/?page=2&ordering=-publication_date HTTP/1.1" 200 487
+INFO 2025-04-01 21:46:17,576 basehttp 8812 7088 "GET /api/articles/?page=1&ordering=-publication_date HTTP/1.1" 200 3961
+INFO 2025-04-01 21:46:21,279 basehttp 8812 7088 "GET /api/articles/?page=2&ordering=-publication_date HTTP/1.1" 200 487
+INFO 2025-04-01 21:46:24,120 basehttp 8812 7088 "GET /api/articles/?page=1&ordering=-publication_date HTTP/1.1" 200 3961
+INFO 2025-04-01 21:46:26,964 basehttp 8812 7088 "GET /api/articles/?page=1&ordering=publication_date HTTP/1.1" 200 3917
+INFO 2025-04-01 21:46:29,151 basehttp 8812 7088 "GET /api/articles/?page=1&ordering=-publication_date HTTP/1.1" 200 3961
+INFO 2025-04-01 21:46:30,990 basehttp 8812 7088 "GET /api/articles/?page=1&search=h&ordering=-publication_date HTTP/1.1" 200 3970
+INFO 2025-04-01 21:46:31,232 basehttp 8812 7088 "GET /api/articles/?page=1&search=hv&ordering=-publication_date HTTP/1.1" 200 85
+INFO 2025-04-01 21:46:32,728 basehttp 8812 7088 "GET /api/articles/?page=1&search=h&ordering=-publication_date HTTP/1.1" 200 3970
+INFO 2025-04-01 21:46:36,922 basehttp 8812 7088 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 21:46:37,021 basehttp 8812 10380 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 21:46:52,679 basehttp 8812 10380 "POST /api/auth/register/ HTTP/1.1" 201 684
+INFO 2025-04-01 21:46:53,087 basehttp 8812 10380 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 21:46:53,187 basehttp 8812 7088 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 21:47:01,048 basehttp 8812 7088 "GET /api/auth/profile/ HTTP/1.1" 200 90
+INFO 2025-04-01 21:47:01,118 basehttp 8812 10380 "GET /api/auth/profile/ HTTP/1.1" 200 90
+INFO 2025-04-01 21:47:01,276 basehttp 8812 19556 "OPTIONS /api/articles/?author=8 HTTP/1.1" 200 0
+INFO 2025-04-01 21:47:01,277 basehttp 8812 4800 "OPTIONS /api/articles/?author=8 HTTP/1.1" 200 0
+INFO 2025-04-01 21:47:01,377 basehttp 8812 10380 "GET /api/articles/?author=8 HTTP/1.1" 200 85
+INFO 2025-04-01 21:47:01,447 basehttp 8812 7088 "GET /api/articles/?author=8 HTTP/1.1" 200 85
+WARNING 2025-04-01 21:47:18,486 log 8812 7088 Not Found: /api/auth/profile/undefined/
+WARNING 2025-04-01 21:47:18,487 basehttp 8812 7088 "PUT /api/auth/profile/undefined/ HTTP/1.1" 404 11721
+INFO 2025-04-01 21:57:03,321 basehttp 8812 2212 "GET /api/auth/profile/ HTTP/1.1" 200 90
+INFO 2025-04-01 21:57:03,507 basehttp 8812 2212 "GET /api/auth/profile/ HTTP/1.1" 200 90
+WARNING 2025-04-01 21:57:37,628 log 8812 2212 Not Found: /api/auth/profile/undefined/
+WARNING 2025-04-01 21:57:37,629 basehttp 8812 2212 "PUT /api/auth/profile/undefined/ HTTP/1.1" 404 11721
+INFO 2025-04-01 22:01:48,198 basehttp 8812 19008 "GET /api/auth/profile/ HTTP/1.1" 200 90
+INFO 2025-04-01 22:01:48,374 basehttp 8812 19008 "GET /api/auth/profile/ HTTP/1.1" 200 90
+INFO 2025-04-01 22:03:14,300 basehttp 8812 21508 "GET /api/auth/profile/ HTTP/1.1" 200 90
+INFO 2025-04-01 22:03:14,365 basehttp 8812 21508 "GET /api/auth/profile/ HTTP/1.1" 200 90
+INFO 2025-04-01 22:08:59,588 basehttp 8812 20120 "GET /api/auth/profile/ HTTP/1.1" 200 90
+INFO 2025-04-01 22:08:59,628 basehttp 8812 6820 "GET /api/articles/?author=8 HTTP/1.1" 200 85
+INFO 2025-04-01 22:13:20,582 basehttp 8812 3488 "GET /api/auth/profile/ HTTP/1.1" 200 90
+INFO 2025-04-01 22:13:20,595 basehttp 8812 3476 "GET /api/articles/?author=8 HTTP/1.1" 200 85
+INFO 2025-04-01 22:13:51,363 basehttp 8812 1000 "GET /api/auth/profile/ HTTP/1.1" 200 90
+INFO 2025-04-01 22:13:51,377 basehttp 8812 21540 "GET /api/articles/?author=8 HTTP/1.1" 200 85
+INFO 2025-04-01 22:13:51,450 basehttp 8812 1000 "GET /api/auth/profile/ HTTP/1.1" 200 90
+INFO 2025-04-01 22:13:51,470 basehttp 8812 21540 "GET /api/articles/?author=8 HTTP/1.1" 200 85
+INFO 2025-04-01 22:14:18,673 basehttp 8812 21540 "GET /api/articles/?author=8 HTTP/1.1" 200 85
+INFO 2025-04-01 22:14:18,888 basehttp 8812 1000 "GET /api/articles/?author=8 HTTP/1.1" 200 85
+INFO 2025-04-01 22:14:18,893 basehttp 8812 21528 "OPTIONS /auth/profile/ HTTP/1.1" 200 0
+INFO 2025-04-01 22:14:18,893 basehttp 8812 12768 "OPTIONS /auth/profile/ HTTP/1.1" 200 0
+WARNING 2025-04-01 22:14:18,911 log 8812 1000 Not Found: /auth/profile/
+WARNING 2025-04-01 22:14:18,913 basehttp 8812 1000 "GET /auth/profile/ HTTP/1.1" 404 3395
+WARNING 2025-04-01 22:14:18,925 log 8812 21540 Not Found: /auth/profile/
+WARNING 2025-04-01 22:14:18,926 basehttp 8812 21540 "GET /auth/profile/ HTTP/1.1" 404 3395
+WARNING 2025-04-01 22:14:46,573 log 8812 21540 Not Found: /auth/profile/
+WARNING 2025-04-01 22:14:46,574 basehttp 8812 21540 "GET /auth/profile/ HTTP/1.1" 404 3395
+WARNING 2025-04-01 22:14:46,583 log 8812 4984 Not Found: /auth/profile/
+WARNING 2025-04-01 22:14:46,584 basehttp 8812 4984 "GET /auth/profile/ HTTP/1.1" 404 3395
+INFO 2025-04-01 22:14:46,661 basehttp 8812 1000 "GET /api/articles/?author=8 HTTP/1.1" 200 85
+INFO 2025-04-01 22:14:46,927 basehttp 8812 4984 "GET /api/articles/?author=8 HTTP/1.1" 200 85
+WARNING 2025-04-01 22:15:18,056 log 8812 4984 Not Found: /auth/profile/
+WARNING 2025-04-01 22:15:18,059 basehttp 8812 4984 "GET /auth/profile/ HTTP/1.1" 404 3395
+WARNING 2025-04-01 22:15:18,072 log 8812 21540 Not Found: /auth/profile/
+WARNING 2025-04-01 22:15:18,073 basehttp 8812 21540 "GET /auth/profile/ HTTP/1.1" 404 3395
+INFO 2025-04-01 22:15:18,177 basehttp 8812 1000 "GET /api/articles/?author=8 HTTP/1.1" 200 85
+INFO 2025-04-01 22:15:18,257 basehttp 8812 21540 "GET /api/articles/?author=8 HTTP/1.1" 200 85
+INFO 2025-04-01 22:15:19,998 basehttp 8812 21540 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 22:15:20,095 basehttp 8812 1000 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+WARNING 2025-04-01 22:15:25,767 log 8812 20036 Not Found: /auth/profile/
+WARNING 2025-04-01 22:15:25,768 basehttp 8812 20036 "GET /auth/profile/ HTTP/1.1" 404 3395
+WARNING 2025-04-01 22:15:25,785 log 8812 20036 Not Found: /auth/profile/
+WARNING 2025-04-01 22:15:25,786 basehttp 8812 20036 "GET /auth/profile/ HTTP/1.1" 404 3395
+INFO 2025-04-01 22:15:25,850 basehttp 8812 16144 "GET /api/articles/?author=8 HTTP/1.1" 200 85
+INFO 2025-04-01 22:15:25,925 basehttp 8812 20036 "GET /api/articles/?author=8 HTTP/1.1" 200 85
+INFO 2025-04-01 22:15:31,003 basehttp 8812 20036 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 22:15:31,099 basehttp 8812 16144 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 22:15:49,807 basehttp 8812 16144 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 22:15:50,024 basehttp 8812 20036 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 22:15:54,065 basehttp 8812 20036 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 22:15:54,169 basehttp 8812 16144 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 22:15:58,143 basehttp 8812 8100 "GET /api/auth/profile/ HTTP/1.1" 200 90
+INFO 2025-04-01 22:15:58,156 basehttp 8812 10168 "GET /api/articles/?author=8 HTTP/1.1" 200 85
+INFO 2025-04-01 22:15:58,249 basehttp 8812 8100 "GET /api/auth/profile/ HTTP/1.1" 200 90
+INFO 2025-04-01 22:15:58,396 basehttp 8812 10168 "GET /api/articles/?author=8 HTTP/1.1" 200 85
+INFO 2025-04-01 22:16:06,437 basehttp 8812 18648 "OPTIONS /auth/profile/8/ HTTP/1.1" 200 0
+WARNING 2025-04-01 22:16:06,461 log 8812 10168 Not Found: /auth/profile/8/
+WARNING 2025-04-01 22:16:06,462 basehttp 8812 10168 "PUT /auth/profile/8/ HTTP/1.1" 404 3401
+INFO 2025-04-01 22:16:06,571 basehttp 8812 10168 "GET /api/auth/profile/ HTTP/1.1" 200 90
+INFO 2025-04-01 22:16:06,581 basehttp 8812 8100 "GET /api/articles/?author=8 HTTP/1.1" 200 85
+INFO 2025-04-01 22:16:11,574 basehttp 8812 10168 "GET /api/articles/?author=8 HTTP/1.1" 200 85
+INFO 2025-04-01 22:16:11,673 basehttp 8812 8100 "GET /api/auth/profile/ HTTP/1.1" 200 90
+WARNING 2025-04-01 22:16:19,576 log 8812 8100 Not Found: /auth/profile/8/
+WARNING 2025-04-01 22:16:19,578 basehttp 8812 8100 "PUT /auth/profile/8/ HTTP/1.1" 404 3401
+INFO 2025-04-01 22:16:19,680 basehttp 8812 8100 "GET /api/auth/profile/ HTTP/1.1" 200 90
+INFO 2025-04-01 22:16:19,692 basehttp 8812 10168 "GET /api/articles/?author=8 HTTP/1.1" 200 85
+INFO 2025-04-01 22:16:24,689 basehttp 8812 8100 "GET /api/articles/?author=8 HTTP/1.1" 200 85
+INFO 2025-04-01 22:16:24,691 basehttp 8812 10168 "GET /api/auth/profile/ HTTP/1.1" 200 90
+WARNING 2025-04-01 22:16:29,319 log 8812 11716 Not Found: /auth/profile/8/
+WARNING 2025-04-01 22:16:29,320 basehttp 8812 11716 "PUT /auth/profile/8/ HTTP/1.1" 404 3401
+INFO 2025-04-01 22:16:29,416 basehttp 8812 11716 "GET /api/auth/profile/ HTTP/1.1" 200 90
+INFO 2025-04-01 22:16:29,491 basehttp 8812 11716 "GET /api/articles/?author=8 HTTP/1.1" 200 85
+INFO 2025-04-01 22:16:34,451 basehttp 8812 11716 "GET /api/auth/profile/ HTTP/1.1" 200 90
+INFO 2025-04-01 22:16:34,456 basehttp 8812 2208 "GET /api/articles/?author=8 HTTP/1.1" 200 85
