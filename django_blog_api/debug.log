@@ -542,3 +542,20 @@ INFO 2025-04-01 12:57:35,595 autoreload 12564 6988 C:\Users\lital\OneDrive\שולחן
 INFO 2025-04-01 12:57:36,668 autoreload 8852 25216 Watching for file changes with StatReloader
 INFO 2025-04-01 12:57:47,182 autoreload 8852 25216 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\comments\views.py changed, reloading.
 INFO 2025-04-01 12:57:48,294 autoreload 14908 25144 Watching for file changes with StatReloader
+INFO 2025-04-01 14:07:37,428 autoreload 14908 25144 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\comments\urls.py changed, reloading.
+INFO 2025-04-01 14:07:40,041 autoreload 21656 16192 Watching for file changes with StatReloader
+INFO 2025-04-01 14:08:05,131 autoreload 21656 16192 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\users\models.py changed, reloading.
+INFO 2025-04-01 14:08:06,202 autoreload 20148 7444 Watching for file changes with StatReloader
+INFO 2025-04-01 14:08:30,735 autoreload 20148 7444 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\users\serializers.py changed, reloading.
+INFO 2025-04-01 14:08:31,605 autoreload 2572 3200 Watching for file changes with StatReloader
+INFO 2025-04-01 14:08:44,468 autoreload 2572 3200 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\users\views.py changed, reloading.
+INFO 2025-04-01 14:08:45,381 autoreload 13656 17924 Watching for file changes with StatReloader
+INFO 2025-04-01 14:09:06,626 autoreload 13656 17924 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\users\urls.py changed, reloading.
+INFO 2025-04-01 14:09:07,836 autoreload 24516 15328 Watching for file changes with StatReloader
+INFO 2025-04-01 14:10:11,090 autoreload 24516 15328 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\blog_project\urls.py changed, reloading.
+INFO 2025-04-01 14:10:12,572 autoreload 2872 16464 Watching for file changes with StatReloader
+INFO 2025-04-01 14:10:41,305 autoreload 2872 16464 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\blog_project\urls.py changed, reloading.
+INFO 2025-04-01 14:10:42,432 autoreload 20896 19392 Watching for file changes with StatReloader
+INFO 2025-04-01 14:11:06,391 autoreload 20896 19392 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\articles\apps.py changed, reloading.
+INFO 2025-04-01 14:11:07,956 autoreload 308 22480 Watching for file changes with StatReloader
+INFO 2025-04-01 14:12:26,075 autoreload 25096 9316 Watching for file changes with StatReloader

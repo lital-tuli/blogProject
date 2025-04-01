@@ -53,6 +53,7 @@ class RegisterView(APIView):
         if serializer.is_valid():
             user = serializer.save()
             
+            # Add user to the 'users' group
             users_group, _ = Group.objects.get_or_create(name='users')
             user.groups.add(users_group)
             

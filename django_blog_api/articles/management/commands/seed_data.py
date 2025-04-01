@@ -88,7 +88,7 @@ class Command(BaseCommand):
             title='Second Article',
             defaults={
                 'content': 'This is the content of the second article. It discusses advanced topics in web development with Python.',
-                'author': admin_user
+                'author': editor_user
             }
         )
         
@@ -100,7 +100,9 @@ class Command(BaseCommand):
         comment1, created = Comment.objects.get_or_create(
             author=regular_user,
             article=article1,
-            content='Great article! Very informative and well-written.'
+            defaults={
+                'content': 'Great article! Very informative and well-written.'
+            }
         )
         
         if created:
@@ -109,7 +111,9 @@ class Command(BaseCommand):
         comment2, created = Comment.objects.get_or_create(
             author=regular_user2,
             article=article1,
-            content='Thanks for sharing this information! I learned a lot from it.'
+            defaults={
+                'content': 'Thanks for sharing this information! I learned a lot from it.'
+            }
         )
         
         if created:
@@ -119,7 +123,9 @@ class Command(BaseCommand):
         comment3, created = Comment.objects.get_or_create(
             author=regular_user,
             article=article2,
-            content='This is really helpful for beginners like me.'
+            defaults={
+                'content': 'This is really helpful for beginners like me.'
+            }
         )
         
         if created:
@@ -128,7 +134,9 @@ class Command(BaseCommand):
         comment4, created = Comment.objects.get_or_create(
             author=regular_user2,
             article=article2,
-            content='I would love to see more advanced topics covered in the future!'
+            defaults={
+                'content': 'I would love to see more advanced topics covered in the future!'
+            }
         )
         
         if created:
