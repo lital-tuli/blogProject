@@ -44,7 +44,7 @@ def create_user_groups():
     users_group.permissions.add(view_article_perm)
     users_group.permissions.add(add_comment_perm)
     users_group.permissions.add(view_comment_perm)
-    users_group.permissions.add(change_comment_perm)  # Allow users to edit their own comments
+    users_group.permissions.add(change_comment_perm)  
     
     # Set permissions for editors (can create/edit/delete articles)
     for perm in article_permissions:
