@@ -14,7 +14,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
     
     Provides CRUD operations for articles with appropriate permissions:
     - List/Retrieve: Available to all users
-    - Create/Update/Delete: Limited to admin users
+    - Create/Update/Delete: Limited to admin users or editors
     
     Includes filtering by tag and author, as well as search functionality.
     """
@@ -62,7 +62,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
         Method: GET
         """
         article = self.get_object()
-        comments = article.comments.all()
+        comments = article.comments.filter(reply_to__isnull=True)
         serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data)
     

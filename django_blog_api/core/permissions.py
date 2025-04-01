@@ -2,9 +2,10 @@ from rest_framework import permissions
 
 class IsAdminUserOrReadOnly(permissions.BasePermission):
     """
-    Allow read access to all users, but only write access to admin users.
+    Allow read access to all users, but only write access to admin users or editors.
     """
     def has_permission(self, request, view):
+        # Allow read-only methods for all users
         if request.method in permissions.SAFE_METHODS:
             return True
         

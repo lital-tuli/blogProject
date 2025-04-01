@@ -96,13 +96,6 @@ class CommentViewSet(viewsets.ModelViewSet):
         """
         serializer.save(author=self.request.user)
     
-    def perform_update(self, serializer):
-        """
-        Update a comment.
-        Only the author can update their own comment.
-        """
-        serializer.save()
-    
     @action(detail=True, methods=['post'])
     def reply(self, request, pk=None):
         """

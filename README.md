@@ -177,7 +177,7 @@ django_blog_api/
 │   ├── permissions.py     # Custom permission classes
 │   └── setup_groups.py    # User group setup
 ├── users/                 # User authentication
-├── blog_project/          # Project settings
+├── /          # Project settings
 └── manage.py              # Django management script
 ```
 

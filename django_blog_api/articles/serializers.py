@@ -1,4 +1,3 @@
-# articles/serializers.py
 from rest_framework import serializers
 from taggit.serializers import TagListSerializerField, TaggitSerializer
 from .models import Article
@@ -53,4 +52,3 @@ class ArticleSerializer(TaggitSerializer, serializers.ModelSerializer):
                     "Title and content cannot be identical"
                 )
         return data
-

@@ -1,10 +1,10 @@
-# django_blog_api/core/setup_groups.py
 from django.contrib.auth.models import Group, Permission
 from django.contrib.contenttypes.models import ContentType
 from articles.models import Article
 from comments.models import Comment
 
 def create_user_groups():
+    """Create user groups with appropriate permissions"""
     # Create groups
     editors_group, _ = Group.objects.get_or_create(name='editors')
     users_group, _ = Group.objects.get_or_create(name='users')
@@ -44,7 +44,7 @@ def create_user_groups():
     users_group.permissions.add(view_article_perm)
     users_group.permissions.add(add_comment_perm)
     users_group.permissions.add(view_comment_perm)
-    users_group.permissions.add(change_comment_perm)  
+    users_group.permissions.add(change_comment_perm)
     
     # Set permissions for editors (can create/edit/delete articles)
     for perm in article_permissions:
