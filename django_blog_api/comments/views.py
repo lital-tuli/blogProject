@@ -6,17 +6,21 @@ from articles.models import Article
 from .models import Comment
 from .serializers import CommentSerializer
 from core.permissions import IsAdminOrAuthorOrReadOnly
+from core.utils import error_response
 
 class CommentViewSet(viewsets.ModelViewSet):
     """
     ViewSet for handling comment operations.
     
-    Provides CRUD operations for comments with appropriate permissions:
-    - List/Retrieve: Available to all users
-    - Create: Limited to authenticated users
-    - Update: Limited to comment author
-    - Delete: Limited to admin users or comment author
+    Endpoints:
+    - GET /api/articles/{article_pk}/comments/ - List comments for an article
+    - POST /api/articles/{article_pk}/comments/ - Create a comment on an article
+    - GET /api/comments/{id}/ - Retrieve a specific comment
+    - PUT/PATCH /api/comments/{id}/ - Update a comment (author only)
+    - DELETE /api/comments/{id}/ - Delete a comment (admin or author only)
+    - POST /api/comments/{id}/reply/ - Reply to a comment
     """
+    # Add this line to fix the router registration error
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
     
@@ -41,7 +45,7 @@ class CommentViewSet(viewsets.ModelViewSet):
         Filters comments by article if article_pk is provided in the URL.
         For list view, only return top-level comments (not replies).
         """
-        queryset = Comment.objects.all()
+        queryset = Comment.objects.select_related('author', 'article')
         
         article_id = self.kwargs.get('article_pk')
         if article_id:
@@ -63,15 +67,20 @@ class CommentViewSet(viewsets.ModelViewSet):
         """
         article_id = self.kwargs.get('article_pk')
         if not article_id:
-            return Response(
-                {"detail": "Article ID is required to create a comment."},
-                status=status.HTTP_400_BAD_REQUEST
+            return error_response(
+                "Article ID is required to create a comment.",
+                status.HTTP_400_BAD_REQUEST
             )
             
         article = get_object_or_404(Article, id=article_id)
         
         serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
+        if not serializer.is_valid():
+            return error_response(
+                "Invalid comment data", 
+                status.HTTP_400_BAD_REQUEST,
+                serializer.errors
+            )
         
         # Check if this is a reply to another comment
         reply_to_id = request.data.get('reply_to')
@@ -79,9 +88,9 @@ class CommentViewSet(viewsets.ModelViewSet):
             reply_to = get_object_or_404(Comment, id=reply_to_id)
             # Ensure reply is to a comment on the same article
             if reply_to.article.id != article.id:
-                return Response(
-                    {"detail": "Reply must be to a comment on the same article."},
-                    status=status.HTTP_400_BAD_REQUEST
+                return error_response(
+                    "Reply must be to a comment on the same article.",
+                    status.HTTP_400_BAD_REQUEST
                 )
             serializer.save(author=request.user, article=article, reply_to=reply_to)
         else:
@@ -89,12 +98,50 @@ class CommentViewSet(viewsets.ModelViewSet):
             
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     
+    def list(self, request, *args, **kwargs):
+        """
+        List comments for an article, hierarchically organized.
+        
+        URL: /api/articles/{article_pk}/comments/
+        Method: GET
+        """
+        queryset = self.filter_queryset(self.get_queryset())
+        
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+        
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+    
     def perform_create(self, serializer):
         """
         Sets the author to the current user when creating a comment.
         This is only used when not overriding create() method.
         """
         serializer.save(author=self.request.user)
+    
+    def update(self, request, *args, **kwargs):
+        """
+        Update a comment (author only).
+        
+        URL: /api/comments/{id}/
+        Method: PUT/PATCH
+        Auth required: Yes (must be author)
+        """
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=kwargs.get('partial', False))
+        
+        if not serializer.is_valid():
+            return error_response(
+                "Invalid comment data", 
+                status.HTTP_400_BAD_REQUEST,
+                serializer.errors
+            )
+            
+        self.perform_update(serializer)
+        return Response(serializer.data)
     
     @action(detail=True, methods=['post'])
     def reply(self, request, pk=None):
@@ -108,11 +155,16 @@ class CommentViewSet(viewsets.ModelViewSet):
         parent_comment = self.get_object()
         
         serializer = self.get_serializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save(
-                author=request.user,
-                article=parent_comment.article,
-                reply_to=parent_comment
+        if not serializer.is_valid():
+            return error_response(
+                "Invalid reply data", 
+                status.HTTP_400_BAD_REQUEST,
+                serializer.errors
             )
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            
+        serializer.save(
+            author=request.user,
+            article=parent_comment.article,
+            reply_to=parent_comment
+        )
+        return Response(serializer.data, status=status.HTTP_201_CREATED)

@@ -1,18 +1,27 @@
+# django_blog_api/users/views.py
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view, permission_classes, action
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth.models import User, Group
 from .serializers import UserSerializer, ProfileSerializer
 from .models import Profile
 from django.shortcuts import get_object_or_404
+from core.utils import error_response
+from django.db import transaction
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def get_user_profile(request):
-    """Get the current user's profile"""
+    """
+    Get the current user's profile
+    
+    URL: /api/auth/user/
+    Method: GET
+    Auth required: Yes
+    """
     user = request.user
     serializer = UserSerializer(user)
     return Response(serializer.data)
@@ -20,7 +29,14 @@ def get_user_profile(request):
 @api_view(['GET', 'PUT'])
 @permission_classes([IsAuthenticated])
 def profile_detail(request, pk=None):
-    """Get or update a user profile"""
+    """
+    Get or update a user profile
+    
+    URL: /api/auth/profile/ - Current user's profile
+    URL: /api/auth/profile/{pk}/ - Specific user's profile
+    Methods: GET, PUT
+    Auth required: Yes (PUT only allowed for own profile)
+    """
     # If no pk is provided, use the current user's profile
     if pk is None:
         profile = request.user.profile
@@ -34,36 +50,54 @@ def profile_detail(request, pk=None):
     # Only allow updating your own profile
     if request.method == 'PUT':
         if profile.user != request.user:
-            return Response(
-                {"detail": "You can only update your own profile."},
-                status=status.HTTP_403_FORBIDDEN
+            return error_response(
+                "You can only update your own profile.",
+                status.HTTP_403_FORBIDDEN
             )
         
         serializer = ProfileSerializer(profile, data=request.data, partial=True)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        if not serializer.is_valid():
+            return error_response(
+                "Invalid profile data", 
+                status.HTTP_400_BAD_REQUEST,
+                serializer.errors
+            )
+            
+        serializer.save()
+        return Response(serializer.data)
 
 class RegisterView(APIView):
+    """
+    Register a new user
+    
+    URL: /api/auth/register/
+    Method: POST
+    Auth required: No
+    """
     permission_classes = [AllowAny]
     
+    @transaction.atomic
     def post(self, request):
         serializer = UserSerializer(data=request.data)
-        if serializer.is_valid():
-            user = serializer.save()
+        if not serializer.is_valid():
+            return error_response(
+                "Invalid registration data", 
+                status.HTTP_400_BAD_REQUEST,
+                serializer.errors
+            )
             
-            # Add user to the 'users' group
-            users_group, _ = Group.objects.get_or_create(name='users')
-            user.groups.add(users_group)
-            
-            # Generate tokens
-            refresh = RefreshToken.for_user(user)
-            
-            return Response({
-                'user': serializer.data,
-                'refresh': str(refresh),
-                'access': str(refresh.access_token),
-            }, status=status.HTTP_201_CREATED)
+        user = serializer.save()
         
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        # Add user to the 'users' group
+        users_group, _ = Group.objects.get_or_create(name='users')
+        user.groups.add(users_group)
+        
+        # Generate tokens
+        refresh = RefreshToken.for_user(user)
+        
+        return Response({
+            'user': serializer.data,
+            'refresh': str(refresh),
+            'access': str(refresh.access_token),
+            'message': 'Registration successful'
+        }, status=status.HTTP_201_CREATED)

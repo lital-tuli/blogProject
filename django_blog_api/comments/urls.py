@@ -1,5 +1,9 @@
 from django.urls import path
+from rest_framework.routers import DefaultRouter
 from .views import CommentViewSet
+
+router = DefaultRouter()
+router.register('comments', CommentViewSet, basename='comment')
 
 urlpatterns = [
     path('articles/<int:article_pk>/comments/', CommentViewSet.as_view({
@@ -18,3 +22,6 @@ urlpatterns = [
         'post': 'reply'
     }), name='comment-reply'),
 ]
+
+# Add router URLs to our patterns
+urlpatterns += router.urls
