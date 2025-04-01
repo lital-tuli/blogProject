@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404
 from articles.models import Article
 from .models import Comment
 from .serializers import CommentSerializer
-from core.permissions import IsAdminOrAuthorOrReadOnly
+from core.permissions import IsAdminOrAuthorOrReadOnly, IsOwnerOrReadOnly
 from core.utils import error_response
 
 class CommentViewSet(viewsets.ModelViewSet):
@@ -29,15 +29,20 @@ class CommentViewSet(viewsets.ModelViewSet):
         Custom permissions based on action:
         - Anyone can view comments (list, retrieve)
         - Authenticated users can create comments and replies
-        - Only admins or the comment author can delete a comment
+        - Only admins can delete a comment (not the comment author)
         - Only the author can update their own comments
         """
         if self.action in ['list', 'retrieve']:
             return [permissions.AllowAny()]
         elif self.action in ['create', 'reply']:
             return [permissions.IsAuthenticated()]
-        elif self.action in ['update', 'partial_update', 'destroy']:
-            return [IsAdminOrAuthorOrReadOnly()]
+        elif self.action == 'destroy':
+            # Change this:
+            # return [IsAdminOrAuthorOrReadOnly()]
+            # To this (admin only):
+            return [permissions.IsAdminUser()]  # Only admins can delete
+        elif self.action in ['update', 'partial_update']:
+            return [IsOwnerOrReadOnly()]  # Only author can update
         return [permissions.IsAuthenticated()]
     
     def get_queryset(self):

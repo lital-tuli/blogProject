@@ -692,3 +692,75 @@ INFO 2025-04-01 20:39:03,973 basehttp 21024 8708 "GET /api/auth/profile/ HTTP/1.
 INFO 2025-04-01 20:39:03,988 basehttp 21024 6780 "GET /api/articles/?author=7 HTTP/1.1" 200 85
 WARNING 2025-04-01 20:39:23,232 log 21024 5940 Not Found: /api/auth/profile/undefined/
 WARNING 2025-04-01 20:39:23,234 basehttp 21024 5940 "PUT /api/auth/profile/undefined/ HTTP/1.1" 404 11721
+INFO 2025-04-01 20:48:42,070 autoreload 21024 20124 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\blog_project\urls.py changed, reloading.
+INFO 2025-04-01 20:48:45,901 autoreload 22252 12108 Watching for file changes with StatReloader
+WARNING 2025-04-01 20:49:27,072 log 22252 1696 Not Found: /api/auth/profile/
+WARNING 2025-04-01 20:49:27,075 basehttp 22252 1696 "GET /api/auth/profile/ HTTP/1.1" 404 10179
+WARNING 2025-04-01 20:49:27,094 log 22252 1696 Not Found: /api/auth/profile/
+WARNING 2025-04-01 20:49:27,097 basehttp 22252 1696 "GET /api/auth/profile/ HTTP/1.1" 404 10179
+INFO 2025-04-01 20:49:27,339 basehttp 22252 8336 "GET /api/articles/?author=7 HTTP/1.1" 200 85
+INFO 2025-04-01 20:49:27,535 basehttp 22252 1696 "GET /api/articles/?author=7 HTTP/1.1" 200 85
+WARNING 2025-04-01 20:49:56,285 log 22252 1696 Not Found: /api/auth/profile/
+WARNING 2025-04-01 20:49:56,286 basehttp 22252 1696 "GET /api/auth/profile/ HTTP/1.1" 404 10179
+WARNING 2025-04-01 20:49:56,306 log 22252 3888 Not Found: /api/auth/profile/
+WARNING 2025-04-01 20:49:56,308 basehttp 22252 3888 "GET /api/auth/profile/ HTTP/1.1" 404 10179
+INFO 2025-04-01 20:49:56,420 basehttp 22252 8336 "GET /api/articles/?author=7 HTTP/1.1" 200 85
+INFO 2025-04-01 20:49:56,520 basehttp 22252 3888 "GET /api/articles/?author=7 HTTP/1.1" 200 85
+WARNING 2025-04-01 20:50:11,032 log 22252 3888 Not Found: /api/auth/profile/
+WARNING 2025-04-01 20:50:11,033 basehttp 22252 3888 "GET /api/auth/profile/ HTTP/1.1" 404 10179
+WARNING 2025-04-01 20:50:11,054 log 22252 1696 Not Found: /api/auth/profile/
+WARNING 2025-04-01 20:50:11,055 basehttp 22252 1696 "GET /api/auth/profile/ HTTP/1.1" 404 10179
+INFO 2025-04-01 20:50:11,150 basehttp 22252 8336 "GET /api/articles/?author=7 HTTP/1.1" 200 85
+INFO 2025-04-01 20:50:11,234 basehttp 22252 1696 "GET /api/articles/?author=7 HTTP/1.1" 200 85
+WARNING 2025-04-01 20:51:18,395 log 22252 1696 Not Found: /api/auth/profile/
+WARNING 2025-04-01 20:51:18,396 basehttp 22252 1696 "GET /api/auth/profile/ HTTP/1.1" 404 10179
+WARNING 2025-04-01 20:51:18,412 log 22252 3888 Not Found: /api/auth/profile/
+WARNING 2025-04-01 20:51:18,413 basehttp 22252 3888 "GET /api/auth/profile/ HTTP/1.1" 404 10179
+INFO 2025-04-01 20:51:18,529 basehttp 22252 8336 "GET /api/articles/?author=7 HTTP/1.1" 200 85
+INFO 2025-04-01 20:51:18,675 basehttp 22252 3888 "GET /api/articles/?author=7 HTTP/1.1" 200 85
+INFO 2025-04-01 20:53:37,473 autoreload 22252 12108 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\comments\views.py changed, reloading.
+INFO 2025-04-01 20:53:38,389 autoreload 17328 4764 Watching for file changes with StatReloader
+INFO 2025-04-01 20:54:44,572 autoreload 17328 4764 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\core\permissions.py changed, reloading.
+INFO 2025-04-01 20:54:45,747 autoreload 2724 19692 Watching for file changes with StatReloader
+INFO 2025-04-01 20:54:59,443 autoreload 2724 19692 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\core\permissions.py changed, reloading.
+INFO 2025-04-01 20:55:00,411 autoreload 20392 3448 Watching for file changes with StatReloader
+INFO 2025-04-01 21:00:16,111 autoreload 20392 3448 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\users\urls.py changed, reloading.
+INFO 2025-04-01 21:00:17,097 autoreload 11208 10568 Watching for file changes with StatReloader
+WARNING 2025-04-01 21:02:40,276 log 11208 7864 Not Found: /api/auth/profile/
+WARNING 2025-04-01 21:02:40,277 basehttp 11208 7864 "GET /api/auth/profile/ HTTP/1.1" 404 10179
+WARNING 2025-04-01 21:02:40,285 log 11208 7864 Not Found: /api/auth/profile/
+WARNING 2025-04-01 21:02:40,286 basehttp 11208 7864 "GET /api/auth/profile/ HTTP/1.1" 404 10179
+INFO 2025-04-01 21:02:40,509 basehttp 11208 19972 "GET /api/articles/?author=7 HTTP/1.1" 200 85
+INFO 2025-04-01 21:02:40,575 basehttp 11208 7864 "GET /api/articles/?author=7 HTTP/1.1" 200 85
+WARNING 2025-04-01 21:02:57,030 log 11208 10328 Not Found: /api/auth/profile/
+WARNING 2025-04-01 21:02:57,031 basehttp 11208 10328 "GET /api/auth/profile/ HTTP/1.1" 404 10179
+WARNING 2025-04-01 21:02:57,058 log 11208 10328 Not Found: /api/auth/profile/
+WARNING 2025-04-01 21:02:57,059 basehttp 11208 10328 "GET /api/auth/profile/ HTTP/1.1" 404 10179
+INFO 2025-04-01 21:02:57,105 basehttp 11208 1924 "GET /api/articles/?author=7 HTTP/1.1" 200 85
+INFO 2025-04-01 21:02:57,195 basehttp 11208 10328 "GET /api/articles/?author=7 HTTP/1.1" 200 85
+WARNING 2025-04-01 21:21:22,493 log 11208 22028 Not Found: /api/auth/profile/
+WARNING 2025-04-01 21:21:22,495 basehttp 11208 22028 "GET /api/auth/profile/ HTTP/1.1" 404 10179
+WARNING 2025-04-01 21:21:22,496 log 11208 6228 Unauthorized: /api/articles/
+WARNING 2025-04-01 21:21:22,497 basehttp 11208 6228 "GET /api/articles/?author=7 HTTP/1.1" 401 172
+INFO 2025-04-01 21:21:22,813 basehttp 11208 6760 "OPTIONS /api/auth/token/refresh/ HTTP/1.1" 200 0
+WARNING 2025-04-01 21:21:22,821 log 11208 6228 Not Found: /api/auth/token/refresh/
+WARNING 2025-04-01 21:21:22,822 basehttp 11208 6228 "POST /api/auth/token/refresh/ HTTP/1.1" 404 10198
+INFO 2025-04-01 21:23:58,922 basehttp 11208 3116 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 21:23:59,126 basehttp 11208 3116 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 21:26:10,918 basehttp 11208 7196 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 21:26:11,042 basehttp 11208 7196 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 21:26:36,346 basehttp 11208 19232 "GET /api/articles/7/comments/ HTTP/1.1" 200 85
+INFO 2025-04-01 21:26:36,440 basehttp 11208 19232 "GET /api/articles/7/comments/ HTTP/1.1" 200 85
+INFO 2025-04-01 21:26:36,458 basehttp 11208 20696 "GET /api/articles/7/ HTTP/1.1" 200 383
+INFO 2025-04-01 21:26:36,665 basehttp 11208 19232 "GET /api/articles/7/ HTTP/1.1" 200 383
+INFO 2025-04-01 21:26:40,375 basehttp 11208 11244 "OPTIONS /api/auth/token/ HTTP/1.1" 200 0
+WARNING 2025-04-01 21:26:40,382 log 11208 19232 Not Found: /api/auth/token/
+WARNING 2025-04-01 21:26:40,382 basehttp 11208 19232 "POST /api/auth/token/ HTTP/1.1" 404 10174
+WARNING 2025-04-01 21:26:48,336 log 11208 5112 Not Found: /api/auth/token/
+WARNING 2025-04-01 21:26:48,336 basehttp 11208 5112 "POST /api/auth/token/ HTTP/1.1" 404 10174
+WARNING 2025-04-01 21:26:55,451 log 11208 5112 Not Found: /api/auth/register/
+WARNING 2025-04-01 21:26:55,451 basehttp 11208 5112 "POST /api/auth/register/ HTTP/1.1" 404 10183
+WARNING 2025-04-01 21:27:26,600 log 11208 8248 Not Found: /api/auth/register/
+WARNING 2025-04-01 21:27:26,601 basehttp 11208 8248 "POST /api/auth/register/ HTTP/1.1" 404 10183
+WARNING 2025-04-01 21:27:55,453 log 11208 996 Not Found: /api/auth/register/
+WARNING 2025-04-01 21:27:55,454 basehttp 11208 996 "POST /api/auth/register/ HTTP/1.1" 404 10183

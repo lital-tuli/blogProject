@@ -6,7 +6,6 @@ from drf_yasg import openapi
 from django.conf import settings
 from django.conf.urls.static import static
 
-# Enhanced schema view with more detailed info
 schema_view = get_schema_view(
    openapi.Info(
       title="Blog API",
@@ -31,10 +30,12 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/auth/', include('users.urls')),
+   
+    path('auth/', include('users.urls')),
     path('api/', include('articles.urls')),
     path('api/', include('comments.urls')),
-    
+    # ...
+
     # Swagger documentation with better naming
     re_path(r'^api/docs(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     re_path(r'^api/docs/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),

@@ -1,6 +1,12 @@
-# django_blog_api/core/permissions.py
 from rest_framework import permissions
 
+class IsAdminUser(permissions.BasePermission):
+    """
+    Allows access only to admin users.
+    """
+    def has_permission(self, request, view):
+        return bool(request.user and request.user.is_authenticated and request.user.is_staff) 
+    
 class IsAdminUserOrReadOnly(permissions.BasePermission):
     """
     Allow read access to all users, but only write access to admin users or editors.
