@@ -627,3 +627,68 @@ WARNING 2025-04-01 15:06:32,461 log 4808 10848 Bad Request: /api/auth/register/
 WARNING 2025-04-01 15:06:32,462 basehttp 4808 10848 "POST /api/auth/register/ HTTP/1.1" 400 89
 INFO 2025-04-01 15:14:00,114 basehttp 4808 24244 "OPTIONS /api/articles/?limit=3&status=published HTTP/1.1" 200 0
 INFO 2025-04-01 15:14:00,115 basehttp 4808 21652 "OPTIONS /api/articles/?limit=3&status=published HTTP/1.1" 200 0
+INFO 2025-04-01 20:17:05,517 basehttp 4808 11612 "OPTIONS /api/articles/?page=1&ordering=-publication_date HTTP/1.1" 200 0
+INFO 2025-04-01 20:17:05,522 basehttp 4808 25224 "OPTIONS /api/articles/?page=1&ordering=-publication_date HTTP/1.1" 200 0
+INFO 2025-04-01 20:28:43,097 autoreload 19892 3776 Watching for file changes with StatReloader
+WARNING 2025-04-01 20:28:51,582 log 19892 20868 Not Found: /
+WARNING 2025-04-01 20:28:51,583 basehttp 19892 20868 "GET / HTTP/1.1" 404 3338
+WARNING 2025-04-01 20:28:51,734 log 19892 20868 Not Found: /favicon.ico
+WARNING 2025-04-01 20:28:51,735 basehttp 19892 20868 "GET /favicon.ico HTTP/1.1" 404 3389
+INFO 2025-04-01 20:28:55,176 basehttp 19892 12984 "OPTIONS /api/articles/?page=1&ordering=-publication_date HTTP/1.1" 200 0
+INFO 2025-04-01 20:28:55,177 basehttp 19892 12808 "OPTIONS /api/articles/?page=1&ordering=-publication_date HTTP/1.1" 200 0
+INFO 2025-04-01 20:29:18,904 basehttp 19892 21100 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 20:29:19,009 basehttp 19892 22248 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 20:29:22,896 basehttp 19892 17428 "OPTIONS /api/articles/?limit=3&status=published HTTP/1.1" 200 0
+INFO 2025-04-01 20:29:22,898 basehttp 19892 18476 "OPTIONS /api/articles/?limit=3&status=published HTTP/1.1" 200 0
+INFO 2025-04-01 20:29:24,824 basehttp 19892 18476 "OPTIONS /api/articles/?limit=3&status=published HTTP/1.1" 200 0
+INFO 2025-04-01 20:29:24,824 basehttp 19892 17428 "OPTIONS /api/articles/?limit=3&status=published HTTP/1.1" 200 0
+WARNING 2025-04-01 20:29:28,611 log 19892 17840 Not Found: /
+WARNING 2025-04-01 20:29:28,613 basehttp 19892 17840 "GET / HTTP/1.1" 404 3338
+INFO 2025-04-01 20:30:58,440 autoreload 19892 3776 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\blog_project\settings.py changed, reloading.
+INFO 2025-04-01 20:31:00,179 autoreload 7904 22512 Watching for file changes with StatReloader
+INFO 2025-04-01 20:31:26,108 autoreload 7904 22512 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\blog_project\settings.py changed, reloading.
+INFO 2025-04-01 20:31:27,335 autoreload 21756 22000 Watching for file changes with StatReloader
+INFO 2025-04-01 20:31:51,966 autoreload 21756 22000 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\blog_project\settings.py changed, reloading.
+INFO 2025-04-01 20:31:53,542 autoreload 7904 13536 Watching for file changes with StatReloader
+INFO 2025-04-01 20:32:15,353 autoreload 7904 13536 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\blog_project\settings.py changed, reloading.
+INFO 2025-04-01 20:32:17,134 autoreload 21756 9100 Watching for file changes with StatReloader
+INFO 2025-04-01 20:32:35,836 autoreload 21756 9100 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\blog_project\settings.py changed, reloading.
+INFO 2025-04-01 20:32:37,058 autoreload 18592 11852 Watching for file changes with StatReloader
+INFO 2025-04-01 20:32:39,835 autoreload 18592 11852 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\blog_project\settings.py changed, reloading.
+INFO 2025-04-01 20:32:41,081 autoreload 16724 1640 Watching for file changes with StatReloader
+INFO 2025-04-01 20:33:35,025 autoreload 16724 1640 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\blog_project\settings.py changed, reloading.
+INFO 2025-04-01 20:33:36,281 autoreload 21024 20124 Watching for file changes with StatReloader
+INFO 2025-04-01 20:33:58,792 basehttp 21024 19584 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 20:33:58,934 basehttp 21024 20852 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 20:34:17,182 basehttp 21024 10164 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 20:34:17,421 basehttp 21024 10164 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 20:34:23,620 basehttp 21024 17520 "GET /api/articles/11/comments/ HTTP/1.1" 200 85
+INFO 2025-04-01 20:34:23,621 basehttp 21024 10164 "GET /api/articles/11/ HTTP/1.1" 200 384
+INFO 2025-04-01 20:34:23,781 basehttp 21024 17520 "GET /api/articles/11/comments/ HTTP/1.1" 200 85
+INFO 2025-04-01 20:34:23,783 basehttp 21024 20652 "GET /api/articles/11/ HTTP/1.1" 200 384
+INFO 2025-04-01 20:34:30,929 basehttp 21024 17344 "OPTIONS /api/token/ HTTP/1.1" 200 0
+WARNING 2025-04-01 20:34:31,270 log 21024 22140 Not Found: /api/token/
+WARNING 2025-04-01 20:34:31,272 basehttp 21024 22140 "POST /api/token/ HTTP/1.1" 404 10163
+INFO 2025-04-01 20:34:40,186 basehttp 21024 21396 "OPTIONS /api/auth/register/ HTTP/1.1" 200 0
+INFO 2025-04-01 20:34:42,567 basehttp 21024 15940 "POST /api/auth/register/ HTTP/1.1" 201 693
+INFO 2025-04-01 20:34:42,748 basehttp 21024 15720 "OPTIONS /api/articles/?limit=3&status=published HTTP/1.1" 200 0
+INFO 2025-04-01 20:34:42,748 basehttp 21024 21396 "OPTIONS /api/articles/?limit=3&status=published HTTP/1.1" 200 0
+INFO 2025-04-01 20:34:42,984 basehttp 21024 15940 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 20:34:43,259 basehttp 21024 22332 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 20:34:50,914 basehttp 21024 18820 "OPTIONS /api/auth/profile/ HTTP/1.1" 200 0
+INFO 2025-04-01 20:34:50,915 basehttp 21024 19072 "OPTIONS /api/articles/?author=7 HTTP/1.1" 200 0
+INFO 2025-04-01 20:34:50,915 basehttp 21024 12796 "OPTIONS /api/auth/profile/ HTTP/1.1" 200 0
+INFO 2025-04-01 20:34:50,915 basehttp 21024 19760 "OPTIONS /api/articles/?author=7 HTTP/1.1" 200 0
+INFO 2025-04-01 20:34:51,347 basehttp 21024 22396 "GET /api/auth/profile/ HTTP/1.1" 200 90
+INFO 2025-04-01 20:34:51,366 basehttp 21024 12712 "GET /api/articles/?author=7 HTTP/1.1" 200 85
+INFO 2025-04-01 20:34:51,496 basehttp 21024 12712 "GET /api/articles/?author=7 HTTP/1.1" 200 85
+INFO 2025-04-01 20:34:51,549 basehttp 21024 22396 "GET /api/auth/profile/ HTTP/1.1" 200 90
+INFO 2025-04-01 20:35:18,940 basehttp 21024 21908 "OPTIONS /api/auth/profile/undefined/ HTTP/1.1" 200 0
+WARNING 2025-04-01 20:35:19,277 log 21024 14096 Not Found: /api/auth/profile/undefined/
+WARNING 2025-04-01 20:35:19,278 basehttp 21024 14096 "PUT /api/auth/profile/undefined/ HTTP/1.1" 404 11721
+INFO 2025-04-01 20:39:03,719 basehttp 21024 8708 "GET /api/auth/profile/ HTTP/1.1" 200 90
+INFO 2025-04-01 20:39:03,753 basehttp 21024 6780 "GET /api/articles/?author=7 HTTP/1.1" 200 85
+INFO 2025-04-01 20:39:03,973 basehttp 21024 8708 "GET /api/auth/profile/ HTTP/1.1" 200 90
+INFO 2025-04-01 20:39:03,988 basehttp 21024 6780 "GET /api/articles/?author=7 HTTP/1.1" 200 85
+WARNING 2025-04-01 20:39:23,232 log 21024 5940 Not Found: /api/auth/profile/undefined/
+WARNING 2025-04-01 20:39:23,234 basehttp 21024 5940 "PUT /api/auth/profile/undefined/ HTTP/1.1" 404 11721
