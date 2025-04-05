@@ -1051,3 +1051,75 @@ WARNING 2025-04-05 20:06:34,748 log 16588 21640 Unauthorized: /api/articles/
 WARNING 2025-04-05 20:06:34,751 basehttp 16588 21640 "GET /api/articles/?limit=3&status=published HTTP/1.1" 401 172
 WARNING 2025-04-05 20:06:34,760 log 16588 21640 Unauthorized: /api/token/refresh/
 WARNING 2025-04-05 20:06:34,762 basehttp 16588 21640 "POST /api/token/refresh/ HTTP/1.1" 401 54
+WARNING 2025-04-05 20:09:36,852 log 16588 24300 Unauthorized: /api/articles/
+WARNING 2025-04-05 20:09:36,853 basehttp 16588 24300 "GET /api/articles/?limit=3&status=published HTTP/1.1" 401 172
+WARNING 2025-04-05 20:09:36,861 log 16588 24300 Unauthorized: /api/articles/
+WARNING 2025-04-05 20:09:36,864 basehttp 16588 24300 "GET /api/articles/?limit=3&status=published HTTP/1.1" 401 172
+WARNING 2025-04-05 20:09:36,875 log 16588 24300 Unauthorized: /api/token/refresh/
+WARNING 2025-04-05 20:09:36,877 basehttp 16588 24300 "POST /api/token/refresh/ HTTP/1.1" 401 54
+INFO 2025-04-05 20:09:45,414 basehttp 16588 7584 "OPTIONS /api/articles/?page=1&ordering=-publication_date HTTP/1.1" 200 0
+INFO 2025-04-05 20:09:45,415 basehttp 16588 8096 "OPTIONS /api/articles/?page=1&ordering=-publication_date HTTP/1.1" 200 0
+WARNING 2025-04-05 20:09:45,435 log 16588 24300 Unauthorized: /api/articles/
+WARNING 2025-04-05 20:09:45,438 basehttp 16588 24300 "GET /api/articles/?page=1&ordering=-publication_date HTTP/1.1" 401 172
+WARNING 2025-04-05 20:09:45,454 log 16588 24300 Unauthorized: /api/articles/
+WARNING 2025-04-05 20:09:45,457 basehttp 16588 24300 "GET /api/articles/?page=1&ordering=-publication_date HTTP/1.1" 401 172
+INFO 2025-04-05 20:11:37,012 autoreload 5976 3988 Watching for file changes with StatReloader
+WARNING 2025-04-05 20:11:40,532 log 5976 12372 Not Found: /
+WARNING 2025-04-05 20:11:40,533 basehttp 5976 12372 "GET / HTTP/1.1" 404 3333
+WARNING 2025-04-05 20:11:43,649 log 5976 3128 Not Found: /
+WARNING 2025-04-05 20:11:43,650 basehttp 5976 3128 "GET / HTTP/1.1" 404 3333
+WARNING 2025-04-05 20:11:45,493 log 5976 3128 Not Found: /
+WARNING 2025-04-05 20:11:45,494 basehttp 5976 3128 "GET / HTTP/1.1" 404 3333
+WARNING 2025-04-05 20:11:54,624 log 5976 11476 Unauthorized: /api/articles/
+WARNING 2025-04-05 20:11:54,625 basehttp 5976 11476 "GET /api/articles/?page=1&ordering=-publication_date HTTP/1.1" 401 172
+WARNING 2025-04-05 20:11:54,631 log 5976 11476 Unauthorized: /api/articles/
+WARNING 2025-04-05 20:11:54,632 basehttp 5976 11476 "GET /api/articles/?page=1&ordering=-publication_date HTTP/1.1" 401 172
+WARNING 2025-04-05 20:11:54,640 log 5976 11476 Unauthorized: /api/token/refresh/
+WARNING 2025-04-05 20:11:54,641 basehttp 5976 11476 "POST /api/token/refresh/ HTTP/1.1" 401 54
+WARNING 2025-04-05 20:15:38,333 log 5976 15416 Unauthorized: /api/articles/
+WARNING 2025-04-05 20:15:38,335 basehttp 5976 15416 "GET /api/articles/?limit=3&status=published HTTP/1.1" 401 172
+WARNING 2025-04-05 20:15:38,341 log 5976 15416 Unauthorized: /api/articles/
+WARNING 2025-04-05 20:15:38,342 basehttp 5976 15416 "GET /api/articles/?limit=3&status=published HTTP/1.1" 401 172
+WARNING 2025-04-05 20:15:38,348 log 5976 15416 Unauthorized: /api/token/refresh/
+WARNING 2025-04-05 20:15:38,350 basehttp 5976 15416 "POST /api/token/refresh/ HTTP/1.1" 401 54
+INFO 2025-04-05 20:15:52,995 autoreload 17372 7192 Watching for file changes with StatReloader
+WARNING 2025-04-05 20:15:55,733 log 17372 19420 Not Found: /
+WARNING 2025-04-05 20:15:55,734 basehttp 17372 19420 "GET / HTTP/1.1" 404 3333
+WARNING 2025-04-05 20:16:18,463 log 17372 10608 Unauthorized: /api/articles/
+WARNING 2025-04-05 20:16:18,465 basehttp 17372 10608 "GET /api/articles/?limit=3&status=published HTTP/1.1" 401 172
+WARNING 2025-04-05 20:16:18,479 log 17372 10608 Unauthorized: /api/articles/
+WARNING 2025-04-05 20:16:18,481 basehttp 17372 10608 "GET /api/articles/?limit=3&status=published HTTP/1.1" 401 172
+WARNING 2025-04-05 20:16:18,499 log 17372 10608 Unauthorized: /api/token/refresh/
+WARNING 2025-04-05 20:16:18,501 basehttp 17372 10608 "POST /api/token/refresh/ HTTP/1.1" 401 54
+WARNING 2025-04-05 20:16:24,541 log 17372 1124 Unauthorized: /api/profile/
+WARNING 2025-04-05 20:16:24,543 log 17372 10036 Unauthorized: /api/articles/
+WARNING 2025-04-05 20:16:24,544 basehttp 17372 1124 "GET /api/profile/ HTTP/1.1" 401 172
+WARNING 2025-04-05 20:16:24,545 basehttp 17372 10036 "GET /api/articles/?author=1 HTTP/1.1" 401 172
+WARNING 2025-04-05 20:16:24,554 log 17372 10036 Unauthorized: /api/profile/
+WARNING 2025-04-05 20:16:24,556 basehttp 17372 10036 "GET /api/profile/ HTTP/1.1" 401 172
+WARNING 2025-04-05 20:16:24,557 log 17372 1124 Unauthorized: /api/articles/
+WARNING 2025-04-05 20:16:24,560 basehttp 17372 1124 "GET /api/articles/?author=1 HTTP/1.1" 401 172
+WARNING 2025-04-05 20:16:26,445 log 17372 1124 Unauthorized: /api/articles/
+WARNING 2025-04-05 20:16:26,446 basehttp 17372 1124 "GET /api/articles/?limit=3&status=published HTTP/1.1" 401 172
+WARNING 2025-04-05 20:16:26,455 log 17372 1124 Unauthorized: /api/articles/
+WARNING 2025-04-05 20:16:26,456 basehttp 17372 1124 "GET /api/articles/?limit=3&status=published HTTP/1.1" 401 172
+INFO 2025-04-05 20:17:56,891 autoreload 17372 7192 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\blog_project\settings.py changed, reloading.
+INFO 2025-04-05 20:17:58,118 autoreload 1996 20532 Watching for file changes with StatReloader
+WARNING 2025-04-05 20:22:19,131 log 1996 22892 Unauthorized: /api/articles/
+WARNING 2025-04-05 20:22:19,132 basehttp 1996 22892 "GET /api/articles/?limit=3&status=published HTTP/1.1" 401 172
+WARNING 2025-04-05 20:22:19,138 log 1996 22892 Unauthorized: /api/articles/
+WARNING 2025-04-05 20:22:19,139 basehttp 1996 22892 "GET /api/articles/?limit=3&status=published HTTP/1.1" 401 172
+WARNING 2025-04-05 20:22:19,178 log 1996 22892 Unauthorized: /api/token/refresh/
+WARNING 2025-04-05 20:22:19,180 basehttp 1996 22892 "POST /api/token/refresh/ HTTP/1.1" 401 54
+WARNING 2025-04-05 20:22:24,450 log 1996 22892 Unauthorized: /api/articles/
+WARNING 2025-04-05 20:22:24,450 basehttp 1996 22892 "GET /api/articles/?limit=3&status=published HTTP/1.1" 401 172
+WARNING 2025-04-05 20:22:24,456 log 1996 22892 Unauthorized: /api/articles/
+WARNING 2025-04-05 20:22:24,457 basehttp 1996 22892 "GET /api/articles/?limit=3&status=published HTTP/1.1" 401 172
+WARNING 2025-04-05 20:22:24,483 log 1996 22892 Unauthorized: /api/token/refresh/
+WARNING 2025-04-05 20:22:24,485 basehttp 1996 22892 "POST /api/token/refresh/ HTTP/1.1" 401 54
+WARNING 2025-04-05 20:22:40,413 log 1996 22892 Unauthorized: /api/articles/
+WARNING 2025-04-05 20:22:40,414 basehttp 1996 22892 "GET /api/articles/?limit=3&status=published HTTP/1.1" 401 172
+WARNING 2025-04-05 20:22:40,420 log 1996 22892 Unauthorized: /api/articles/
+WARNING 2025-04-05 20:22:40,422 basehttp 1996 22892 "GET /api/articles/?limit=3&status=published HTTP/1.1" 401 172
+WARNING 2025-04-05 20:22:40,785 log 1996 13472 Unauthorized: /api/token/refresh/
+WARNING 2025-04-05 20:22:40,788 basehttp 1996 13472 "POST /api/token/refresh/ HTTP/1.1" 401 54
