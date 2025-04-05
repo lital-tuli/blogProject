@@ -31,10 +31,10 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('admin/', admin.site.urls),
    
-    # Prefix all auth endpoints with 'api/' for consistency
-    path('api/auth/', include('users.urls')),
     
-    # These paths already have 'api/' prefix
+    path('api/', include('users.urls')),
+    
+    
     path('api/', include('articles.urls')),
     path('api/', include('comments.urls')),
 

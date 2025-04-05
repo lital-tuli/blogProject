@@ -875,3 +875,179 @@ INFO 2025-04-01 22:16:29,416 basehttp 8812 11716 "GET /api/auth/profile/ HTTP/1.
 INFO 2025-04-01 22:16:29,491 basehttp 8812 11716 "GET /api/articles/?author=8 HTTP/1.1" 200 85
 INFO 2025-04-01 22:16:34,451 basehttp 8812 11716 "GET /api/auth/profile/ HTTP/1.1" 200 90
 INFO 2025-04-01 22:16:34,456 basehttp 8812 2208 "GET /api/articles/?author=8 HTTP/1.1" 200 85
+WARNING 2025-04-01 22:19:18,723 log 8812 21484 Unauthorized: /api/articles/
+WARNING 2025-04-01 22:19:18,724 basehttp 8812 21484 "GET /api/articles/?limit=3&status=published HTTP/1.1" 401 172
+WARNING 2025-04-01 22:19:18,731 log 8812 21484 Unauthorized: /api/articles/
+WARNING 2025-04-01 22:19:18,732 basehttp 8812 21484 "GET /api/articles/?limit=3&status=published HTTP/1.1" 401 172
+INFO 2025-04-01 22:19:18,919 basehttp 8812 21484 "POST /api/auth/token/refresh/ HTTP/1.1" 200 483
+INFO 2025-04-01 22:19:19,040 basehttp 8812 21484 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 22:19:19,147 basehttp 8812 16320 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 22:19:25,336 basehttp 8812 16320 "GET /api/auth/profile/ HTTP/1.1" 200 90
+INFO 2025-04-01 22:19:25,350 basehttp 8812 21484 "GET /api/articles/?author=8 HTTP/1.1" 200 85
+INFO 2025-04-01 22:19:25,434 basehttp 8812 16320 "GET /api/articles/?author=8 HTTP/1.1" 200 85
+INFO 2025-04-01 22:19:25,503 basehttp 8812 6024 "GET /api/auth/profile/ HTTP/1.1" 200 90
+INFO 2025-04-01 22:19:27,149 basehttp 8812 6024 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 22:19:27,278 basehttp 8812 16320 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 22:19:40,362 basehttp 8812 16320 "POST /api/auth/token/ HTTP/1.1" 200 483
+INFO 2025-04-01 22:19:40,684 basehttp 8812 6236 "OPTIONS /api/auth/user/ HTTP/1.1" 200 0
+INFO 2025-04-01 22:19:40,755 basehttp 8812 16320 "GET /api/auth/user/ HTTP/1.1" 200 157
+INFO 2025-04-01 22:19:40,931 basehttp 8812 16320 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 22:19:41,021 basehttp 8812 6024 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 22:25:38,382 basehttp 8812 2664 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 22:25:38,498 basehttp 8812 2664 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 22:26:11,280 basehttp 8812 11228 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 22:26:11,459 basehttp 8812 5268 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 22:27:54,448 basehttp 8812 5268 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 22:27:54,657 basehttp 8812 11228 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 22:27:59,822 basehttp 8812 11228 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 22:27:59,990 basehttp 8812 5268 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 22:28:02,180 basehttp 8812 5268 "GET /api/auth/profile/ HTTP/1.1" 200 90
+INFO 2025-04-01 22:28:02,329 basehttp 8812 11228 "GET /api/articles/?author=8 HTTP/1.1" 200 85
+INFO 2025-04-01 22:28:02,337 basehttp 8812 5268 "GET /api/auth/profile/ HTTP/1.1" 200 90
+INFO 2025-04-01 22:28:02,478 basehttp 8812 11228 "GET /api/articles/?author=8 HTTP/1.1" 200 85
+INFO 2025-04-01 22:28:03,673 basehttp 8812 11228 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 22:28:03,860 basehttp 8812 5268 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 22:28:14,060 basehttp 8812 5268 "GET /api/auth/profile/ HTTP/1.1" 200 90
+INFO 2025-04-01 22:28:14,078 basehttp 8812 11228 "GET /api/articles/?author=8 HTTP/1.1" 200 85
+INFO 2025-04-01 22:28:14,217 basehttp 8812 8504 "GET /api/auth/profile/ HTTP/1.1" 200 90
+INFO 2025-04-01 22:28:14,257 basehttp 8812 5268 "GET /api/articles/?author=8 HTTP/1.1" 200 85
+INFO 2025-04-01 22:28:15,790 basehttp 8812 5268 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 22:28:16,017 basehttp 8812 8504 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 22:28:19,069 basehttp 8812 8504 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 22:28:19,273 basehttp 8812 5268 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 22:28:21,899 basehttp 8812 8392 "OPTIONS /api/articles/?page=1&ordering=-publication_date HTTP/1.1" 200 0
+INFO 2025-04-01 22:28:21,900 basehttp 8812 7136 "OPTIONS /api/articles/?page=1&ordering=-publication_date HTTP/1.1" 200 0
+INFO 2025-04-01 22:28:22,209 basehttp 8812 5268 "GET /api/articles/?page=1&ordering=-publication_date HTTP/1.1" 200 3961
+INFO 2025-04-01 22:28:22,354 basehttp 8812 8504 "GET /api/articles/?page=1&ordering=-publication_date HTTP/1.1" 200 3961
+INFO 2025-04-01 22:28:27,099 basehttp 8812 8504 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 22:28:27,277 basehttp 8812 8504 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 22:28:32,180 basehttp 8812 8504 "GET /api/articles/?page=1&ordering=-publication_date HTTP/1.1" 200 3961
+INFO 2025-04-01 22:28:32,328 basehttp 8812 308 "GET /api/articles/?page=1&ordering=-publication_date HTTP/1.1" 200 3961
+INFO 2025-04-01 22:28:33,146 basehttp 8812 308 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 22:28:33,281 basehttp 8812 8504 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 22:28:40,655 basehttp 8812 8504 "GET /api/articles/?page=1&ordering=-publication_date HTTP/1.1" 200 3961
+INFO 2025-04-01 22:28:40,815 basehttp 8812 308 "GET /api/articles/?page=1&ordering=-publication_date HTTP/1.1" 200 3961
+INFO 2025-04-01 22:28:42,849 basehttp 8812 308 "GET /api/auth/profile/ HTTP/1.1" 200 90
+INFO 2025-04-01 22:28:42,867 basehttp 8812 8504 "GET /api/articles/?author=8 HTTP/1.1" 200 85
+INFO 2025-04-01 22:28:42,973 basehttp 8812 308 "GET /api/auth/profile/ HTTP/1.1" 200 90
+INFO 2025-04-01 22:28:42,993 basehttp 8812 8504 "GET /api/articles/?author=8 HTTP/1.1" 200 85
+INFO 2025-04-01 22:29:40,730 basehttp 8812 8504 "POST /api/auth/token/ HTTP/1.1" 200 483
+INFO 2025-04-01 22:29:40,801 basehttp 8812 8504 "GET /api/auth/user/ HTTP/1.1" 200 70
+INFO 2025-04-01 22:29:41,045 basehttp 8812 8504 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 22:29:41,224 basehttp 8812 308 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 22:29:48,152 basehttp 8812 764 "OPTIONS /api/articles/11/ HTTP/1.1" 200 0
+INFO 2025-04-01 22:29:48,152 basehttp 8812 18792 "OPTIONS /api/articles/11/comments/ HTTP/1.1" 200 0
+INFO 2025-04-01 22:29:48,153 basehttp 8812 12816 "OPTIONS /api/articles/11/ HTTP/1.1" 200 0
+INFO 2025-04-01 22:29:48,155 basehttp 8812 12276 "OPTIONS /api/articles/11/comments/ HTTP/1.1" 200 0
+INFO 2025-04-01 22:29:48,332 basehttp 8812 308 "GET /api/articles/11/ HTTP/1.1" 200 384
+INFO 2025-04-01 22:29:48,332 basehttp 8812 8504 "GET /api/articles/11/comments/ HTTP/1.1" 200 85
+INFO 2025-04-01 22:29:48,522 basehttp 8812 8504 "GET /api/articles/11/comments/ HTTP/1.1" 200 85
+INFO 2025-04-01 22:29:48,532 basehttp 8812 308 "GET /api/articles/11/ HTTP/1.1" 200 384
+INFO 2025-04-01 22:29:50,680 basehttp 8812 308 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 22:29:50,875 basehttp 8812 8504 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 3959
+INFO 2025-04-01 22:29:52,827 basehttp 8812 8504 "GET /api/articles/11/ HTTP/1.1" 200 384
+INFO 2025-04-01 22:29:52,827 basehttp 8812 308 "GET /api/articles/11/comments/ HTTP/1.1" 200 85
+INFO 2025-04-01 22:29:52,939 basehttp 8812 5976 "GET /api/articles/11/comments/ HTTP/1.1" 200 85
+INFO 2025-04-01 22:29:52,948 basehttp 8812 17220 "GET /api/articles/11/ HTTP/1.1" 200 384
+WARNING 2025-04-01 22:29:58,955 log 8812 17220 Method Not Allowed: /api/articles/11/comments/
+WARNING 2025-04-01 22:29:58,956 basehttp 8812 17220 "POST /api/articles/11/comments/ HTTP/1.1" 405 41
+INFO 2025-04-01 22:30:17,543 basehttp 8812 17220 "DELETE /api/articles/11/ HTTP/1.1" 204 42
+INFO 2025-04-01 22:30:17,829 basehttp 8812 5976 "GET /api/articles/?page=1&ordering=-publication_date HTTP/1.1" 200 3851
+INFO 2025-04-01 22:30:17,996 basehttp 8812 8504 "GET /api/articles/?page=1&ordering=-publication_date HTTP/1.1" 200 3851
+INFO 2025-04-01 22:30:33,040 basehttp 8812 12276 "OPTIONS /api/articles/10/ HTTP/1.1" 200 0
+INFO 2025-04-01 22:30:33,046 basehttp 8812 12816 "OPTIONS /api/articles/10/comments/ HTTP/1.1" 200 0
+INFO 2025-04-01 22:30:33,050 basehttp 8812 18792 "OPTIONS /api/articles/10/ HTTP/1.1" 200 0
+INFO 2025-04-01 22:30:33,055 basehttp 8812 764 "OPTIONS /api/articles/10/comments/ HTTP/1.1" 200 0
+INFO 2025-04-01 22:30:33,201 basehttp 8812 8504 "GET /api/articles/10/ HTTP/1.1" 200 384
+INFO 2025-04-01 22:30:33,216 basehttp 8812 5976 "GET /api/articles/10/comments/ HTTP/1.1" 200 85
+INFO 2025-04-01 22:30:33,354 basehttp 8812 308 "GET /api/articles/10/ HTTP/1.1" 200 384
+INFO 2025-04-01 22:30:33,503 basehttp 8812 8504 "GET /api/articles/10/comments/ HTTP/1.1" 200 85
+INFO 2025-04-01 22:30:38,418 basehttp 8812 8504 "DELETE /api/articles/10/ HTTP/1.1" 204 42
+INFO 2025-04-01 22:30:38,717 basehttp 8812 308 "GET /api/articles/?page=1&ordering=-publication_date HTTP/1.1" 200 3465
+INFO 2025-04-01 22:30:38,894 basehttp 8812 5976 "GET /api/articles/?page=1&ordering=-publication_date HTTP/1.1" 200 3465
+INFO 2025-04-01 22:30:40,671 basehttp 8812 5976 "GET /api/articles/?page=1&ordering=-publication_date HTTP/1.1" 200 3465
+INFO 2025-04-01 22:30:40,873 basehttp 8812 308 "GET /api/articles/?page=1&ordering=-publication_date HTTP/1.1" 200 3465
+INFO 2025-04-01 22:30:46,449 basehttp 8812 764 "OPTIONS /api/articles/?page=1&search=6&ordering=-publication_date HTTP/1.1" 200 0
+INFO 2025-04-01 22:30:46,602 basehttp 8812 308 "GET /api/articles/?page=1&search=6&ordering=-publication_date HTTP/1.1" 200 852
+INFO 2025-04-01 22:30:46,965 basehttp 8812 764 "OPTIONS /api/articles/?page=1&search=63&ordering=-publication_date HTTP/1.1" 200 0
+INFO 2025-04-01 22:30:47,112 basehttp 8812 308 "GET /api/articles/?page=1&search=63&ordering=-publication_date HTTP/1.1" 200 468
+INFO 2025-04-01 22:30:47,286 basehttp 8812 764 "OPTIONS /api/articles/?page=1&search=631&ordering=-publication_date HTTP/1.1" 200 0
+INFO 2025-04-01 22:30:47,421 basehttp 8812 308 "GET /api/articles/?page=1&search=631&ordering=-publication_date HTTP/1.1" 200 85
+INFO 2025-04-01 22:30:49,596 basehttp 8812 308 "GET /api/articles/?page=1&search=63&ordering=-publication_date HTTP/1.1" 200 468
+INFO 2025-04-01 22:30:50,023 basehttp 8812 308 "GET /api/articles/?page=1&search=6&ordering=-publication_date HTTP/1.1" 200 852
+INFO 2025-04-01 22:30:50,193 basehttp 8812 308 "GET /api/articles/?page=1&ordering=-publication_date HTTP/1.1" 200 3465
+INFO 2025-04-01 22:30:51,673 basehttp 8812 18792 "OPTIONS /api/articles/8/comments/ HTTP/1.1" 200 0
+INFO 2025-04-01 22:30:51,673 basehttp 8812 764 "OPTIONS /api/articles/8/ HTTP/1.1" 200 0
+INFO 2025-04-01 22:30:51,674 basehttp 8812 12816 "OPTIONS /api/articles/8/ HTTP/1.1" 200 0
+INFO 2025-04-01 22:30:51,674 basehttp 8812 12276 "OPTIONS /api/articles/8/comments/ HTTP/1.1" 200 0
+INFO 2025-04-01 22:30:51,854 basehttp 8812 308 "GET /api/articles/8/ HTTP/1.1" 200 383
+INFO 2025-04-01 22:30:51,950 basehttp 8812 5976 "GET /api/articles/8/comments/ HTTP/1.1" 200 85
+INFO 2025-04-01 22:30:51,979 basehttp 8812 308 "GET /api/articles/8/ HTTP/1.1" 200 383
+INFO 2025-04-01 22:30:52,085 basehttp 8812 5976 "GET /api/articles/8/comments/ HTTP/1.1" 200 85
+WARNING 2025-04-01 22:30:57,016 log 8812 5976 Method Not Allowed: /api/articles/8/comments/
+WARNING 2025-04-01 22:30:57,017 basehttp 8812 5976 "POST /api/articles/8/comments/ HTTP/1.1" 405 41
+WARNING 2025-04-01 22:38:50,591 log 8812 5308 Not Found: /
+WARNING 2025-04-01 22:38:50,593 basehttp 8812 5308 "GET / HTTP/1.1" 404 3338
+INFO 2025-04-01 22:38:54,063 basehttp 8812 21668 "GET /api/articles/8/ HTTP/1.1" 200 383
+INFO 2025-04-01 22:38:54,063 basehttp 8812 15808 "GET /api/articles/8/comments/ HTTP/1.1" 200 85
+INFO 2025-04-01 22:38:54,239 basehttp 8812 15808 "GET /api/articles/8/comments/ HTTP/1.1" 200 85
+INFO 2025-04-01 22:38:54,241 basehttp 8812 21668 "GET /api/articles/8/ HTTP/1.1" 200 383
+INFO 2025-04-01 22:38:58,518 basehttp 8812 16336 "OPTIONS /api/auth/profile/ HTTP/1.1" 200 0
+INFO 2025-04-01 22:38:58,519 basehttp 8812 21716 "OPTIONS /api/articles/?author=1 HTTP/1.1" 200 0
+INFO 2025-04-01 22:38:58,520 basehttp 8812 18820 "OPTIONS /api/auth/profile/ HTTP/1.1" 200 0
+INFO 2025-04-01 22:38:58,522 basehttp 8812 21960 "OPTIONS /api/articles/?author=1 HTTP/1.1" 200 0
+ERROR 2025-04-01 22:38:58,625 log 8812 15808 Internal Server Error: /api/auth/profile/
+ERROR 2025-04-01 22:38:58,626 basehttp 8812 15808 "GET /api/auth/profile/ HTTP/1.1" 500 47
+INFO 2025-04-01 22:38:58,642 basehttp 8812 21668 "GET /api/articles/?author=1 HTTP/1.1" 200 85
+ERROR 2025-04-01 22:38:58,734 log 8812 22176 Internal Server Error: /api/auth/profile/
+ERROR 2025-04-01 22:38:58,735 basehttp 8812 22176 "GET /api/auth/profile/ HTTP/1.1" 500 47
+INFO 2025-04-01 22:38:58,743 basehttp 8812 15808 "GET /api/articles/?author=1 HTTP/1.1" 200 85
+WARNING 2025-04-01 22:39:07,674 log 8812 6468 Not Found: /
+WARNING 2025-04-01 22:39:07,676 basehttp 8812 6468 "GET / HTTP/1.1" 404 3338
+INFO 2025-04-05 18:57:36,839 basehttp 8812 23708 "OPTIONS /api/articles/?author=1 HTTP/1.1" 200 0
+INFO 2025-04-05 18:57:36,846 basehttp 8812 20452 "OPTIONS /api/auth/profile/ HTTP/1.1" 200 0
+INFO 2025-04-05 18:57:36,861 basehttp 8812 10776 "OPTIONS /api/auth/profile/ HTTP/1.1" 200 0
+INFO 2025-04-05 18:57:36,870 basehttp 8812 3344 "OPTIONS /api/articles/?author=1 HTTP/1.1" 200 0
+WARNING 2025-04-05 18:57:37,273 log 8812 23664 Unauthorized: /api/articles/
+WARNING 2025-04-05 18:57:37,274 basehttp 8812 23664 "GET /api/articles/?author=1 HTTP/1.1" 401 172
+WARNING 2025-04-05 18:57:37,274 log 8812 27168 Unauthorized: /api/auth/profile/
+WARNING 2025-04-05 18:57:37,276 basehttp 8812 27168 "GET /api/auth/profile/ HTTP/1.1" 401 172
+WARNING 2025-04-05 18:57:37,282 log 8812 23664 Unauthorized: /api/articles/
+WARNING 2025-04-05 18:57:37,284 log 8812 27168 Unauthorized: /api/auth/profile/
+WARNING 2025-04-05 18:57:37,285 basehttp 8812 23664 "GET /api/articles/?author=1 HTTP/1.1" 401 172
+WARNING 2025-04-05 18:57:37,286 basehttp 8812 27168 "GET /api/auth/profile/ HTTP/1.1" 401 172
+INFO 2025-04-05 18:57:37,296 basehttp 8812 3344 "OPTIONS /api/auth/token/refresh/ HTTP/1.1" 200 0
+WARNING 2025-04-05 18:57:37,337 log 8812 27168 Unauthorized: /api/auth/token/refresh/
+WARNING 2025-04-05 18:57:37,338 basehttp 8812 27168 "POST /api/auth/token/refresh/ HTTP/1.1" 401 54
+INFO 2025-04-05 20:03:57,386 autoreload 16588 8572 Watching for file changes with StatReloader
+WARNING 2025-04-05 20:04:01,374 log 16588 19060 Not Found: /
+WARNING 2025-04-05 20:04:01,375 basehttp 16588 19060 "GET / HTTP/1.1" 404 3333
+WARNING 2025-04-05 20:04:01,731 log 16588 19060 Not Found: /favicon.ico
+WARNING 2025-04-05 20:04:01,732 basehttp 16588 19060 "GET /favicon.ico HTTP/1.1" 404 3384
+INFO 2025-04-05 20:04:23,111 basehttp 16588 18636 "OPTIONS /api/profile/ HTTP/1.1" 200 0
+INFO 2025-04-05 20:04:23,111 basehttp 16588 17108 "OPTIONS /api/articles/?author=1 HTTP/1.1" 200 0
+INFO 2025-04-05 20:04:23,112 basehttp 16588 14168 "OPTIONS /api/articles/?author=1 HTTP/1.1" 200 0
+INFO 2025-04-05 20:04:23,112 basehttp 16588 11424 "OPTIONS /api/profile/ HTTP/1.1" 200 0
+WARNING 2025-04-05 20:04:23,475 log 16588 7584 Unauthorized: /api/profile/
+WARNING 2025-04-05 20:04:23,477 log 16588 2952 Unauthorized: /api/articles/
+WARNING 2025-04-05 20:04:23,478 basehttp 16588 7584 "GET /api/profile/ HTTP/1.1" 401 172
+WARNING 2025-04-05 20:04:23,478 basehttp 16588 2952 "GET /api/articles/?author=1 HTTP/1.1" 401 172
+WARNING 2025-04-05 20:04:23,487 log 16588 7584 Unauthorized: /api/profile/
+INFO 2025-04-05 20:04:23,488 basehttp 16588 11424 "OPTIONS /api/token/refresh/ HTTP/1.1" 200 0
+WARNING 2025-04-05 20:04:23,489 log 16588 2952 Unauthorized: /api/articles/
+WARNING 2025-04-05 20:04:23,491 basehttp 16588 7584 "GET /api/profile/ HTTP/1.1" 401 172
+WARNING 2025-04-05 20:04:23,491 basehttp 16588 2952 "GET /api/articles/?author=1 HTTP/1.1" 401 172
+WARNING 2025-04-05 20:04:23,500 log 16588 7584 Unauthorized: /api/token/refresh/
+WARNING 2025-04-05 20:04:23,501 basehttp 16588 7584 "POST /api/token/refresh/ HTTP/1.1" 401 54
+INFO 2025-04-05 20:04:34,611 basehttp 16588 8748 "OPTIONS /api/articles/?limit=3&status=published HTTP/1.1" 200 0
+INFO 2025-04-05 20:04:34,612 basehttp 16588 6068 "OPTIONS /api/articles/?limit=3&status=published HTTP/1.1" 200 0
+WARNING 2025-04-05 20:04:34,924 log 16588 5028 Unauthorized: /api/articles/
+WARNING 2025-04-05 20:04:34,925 basehttp 16588 5028 "GET /api/articles/?limit=3&status=published HTTP/1.1" 401 172
+WARNING 2025-04-05 20:04:34,931 log 16588 5028 Unauthorized: /api/articles/
+WARNING 2025-04-05 20:04:34,932 basehttp 16588 5028 "GET /api/articles/?limit=3&status=published HTTP/1.1" 401 172
+WARNING 2025-04-05 20:06:34,740 log 16588 21640 Unauthorized: /api/articles/
+WARNING 2025-04-05 20:06:34,742 basehttp 16588 21640 "GET /api/articles/?limit=3&status=published HTTP/1.1" 401 172
+WARNING 2025-04-05 20:06:34,748 log 16588 21640 Unauthorized: /api/articles/
+WARNING 2025-04-05 20:06:34,751 basehttp 16588 21640 "GET /api/articles/?limit=3&status=published HTTP/1.1" 401 172
+WARNING 2025-04-05 20:06:34,760 log 16588 21640 Unauthorized: /api/token/refresh/
+WARNING 2025-04-05 20:06:34,762 basehttp 16588 21640 "POST /api/token/refresh/ HTTP/1.1" 401 54
