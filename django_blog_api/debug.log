@@ -1336,3 +1336,84 @@ INFO 2025-04-06 14:13:47,590 autoreload 2576 11252 C:\Users\lital\OneDrive\שולחן
 INFO 2025-04-06 14:13:49,064 autoreload 23120 5812 Watching for file changes with StatReloader
 INFO 2025-04-06 14:15:40,429 autoreload 23120 5812 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\core\permissions.py changed, reloading.
 INFO 2025-04-06 14:15:41,634 autoreload 26880 25324 Watching for file changes with StatReloader
+INFO 2025-04-06 14:31:54,232 basehttp 26880 17460 - Broken pipe from ('127.0.0.1', 59622)
+INFO 2025-04-06 14:31:54,234 basehttp 26880 2808 "GET /admin/auth/user/ HTTP/1.1" 200 16622
+INFO 2025-04-06 14:31:54,562 basehttp 26880 2808 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-04-06 14:31:58,355 basehttp 26880 2808 "GET /admin/auth/group/ HTTP/1.1" 200 11613
+INFO 2025-04-06 14:31:58,544 basehttp 26880 2808 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+WARNING 2025-04-06 14:37:55,709 log 26880 24996 Unauthorized: /api/articles/
+WARNING 2025-04-06 14:37:55,711 basehttp 26880 24996 "GET /api/articles/?limit=3&status=published HTTP/1.1" 401 172
+WARNING 2025-04-06 14:37:55,720 log 26880 24996 Unauthorized: /api/articles/
+WARNING 2025-04-06 14:37:55,722 basehttp 26880 24996 "GET /api/articles/?limit=3&status=published HTTP/1.1" 401 172
+INFO 2025-04-06 14:37:59,948 basehttp 26880 24996 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 52
+INFO 2025-04-06 14:38:00,080 basehttp 26880 16016 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 52
+INFO 2025-04-06 14:38:07,106 basehttp 26880 15104 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 52
+INFO 2025-04-06 14:38:07,215 basehttp 26880 15104 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 52
+INFO 2025-04-06 14:43:27,540 basehttp 26880 18220 "GET /api/articles/?page=1&ordering=-publication_date HTTP/1.1" 200 52
+INFO 2025-04-06 14:43:27,645 basehttp 26880 18220 "GET /api/articles/?page=1&ordering=-publication_date HTTP/1.1" 200 52
+INFO 2025-04-06 14:43:29,988 basehttp 26880 18220 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 52
+INFO 2025-04-06 14:43:30,153 basehttp 26880 27312 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 52
+INFO 2025-04-06 14:43:37,320 basehttp 26880 12704 "OPTIONS /api/token/ HTTP/1.1" 200 0
+INFO 2025-04-06 14:43:39,895 basehttp 26880 25256 "POST /api/token/ HTTP/1.1" 200 483
+INFO 2025-04-06 14:43:39,902 basehttp 26880 12704 "OPTIONS /api/user/ HTTP/1.1" 200 0
+INFO 2025-04-06 14:43:40,173 basehttp 26880 25256 "GET /api/user/ HTTP/1.1" 200 250
+INFO 2025-04-06 14:43:40,363 basehttp 26880 25256 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 52
+INFO 2025-04-06 14:43:40,594 basehttp 26880 19120 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 52
+INFO 2025-04-06 14:44:19,524 basehttp 26880 27200 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 52
+INFO 2025-04-06 14:44:19,665 basehttp 26880 27200 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 52
+INFO 2025-04-06 14:44:25,655 basehttp 26880 17440 "OPTIONS /api/articles/?author=7 HTTP/1.1" 200 0
+INFO 2025-04-06 14:44:25,655 basehttp 26880 9408 "OPTIONS /api/articles/?author=7 HTTP/1.1" 200 0
+INFO 2025-04-06 14:44:25,655 basehttp 26880 2088 "OPTIONS /api/profile/ HTTP/1.1" 200 0
+INFO 2025-04-06 14:44:25,655 basehttp 26880 22104 "OPTIONS /api/profile/ HTTP/1.1" 200 0
+INFO 2025-04-06 14:44:26,135 basehttp 26880 2220 "GET /api/profile/ HTTP/1.1" 200 174
+INFO 2025-04-06 14:44:26,159 basehttp 26880 15008 "GET /api/articles/?author=7 HTTP/1.1" 200 52
+INFO 2025-04-06 14:44:26,275 basehttp 26880 2220 "GET /api/profile/ HTTP/1.1" 200 174
+INFO 2025-04-06 14:44:26,302 basehttp 26880 15008 "GET /api/articles/?author=7 HTTP/1.1" 200 52
+INFO 2025-04-06 14:44:36,807 basehttp 26880 6112 "OPTIONS /api/profile/7/ HTTP/1.1" 200 0
+INFO 2025-04-06 14:44:37,857 basehttp 26880 9912 "PUT /api/profile/7/ HTTP/1.1" 200 214
+INFO 2025-04-06 14:44:38,034 basehttp 26880 6112 "OPTIONS /api/articles/?author=undefined HTTP/1.1" 200 0
+INFO 2025-04-06 14:44:38,034 basehttp 26880 16520 "OPTIONS /api/articles/?author=undefined HTTP/1.1" 200 0
+INFO 2025-04-06 14:44:38,059 basehttp 26880 9912 "GET /api/profile/ HTTP/1.1" 200 214
+INFO 2025-04-06 14:44:38,096 basehttp 26880 8220 "GET /api/articles/?author=7 HTTP/1.1" 200 52
+INFO 2025-04-06 14:44:38,184 basehttp 26880 8220 "GET /api/profile/ HTTP/1.1" 200 214
+INFO 2025-04-06 14:44:38,259 basehttp 26880 9912 "GET /api/articles/?author=undefined HTTP/1.1" 200 52
+INFO 2025-04-06 14:44:38,276 basehttp 26880 8220 "GET /api/profile/ HTTP/1.1" 200 214
+INFO 2025-04-06 14:44:38,383 basehttp 26880 9912 "GET /api/articles/?author=undefined HTTP/1.1" 200 52
+INFO 2025-04-06 14:44:40,995 basehttp 26880 9912 "GET /api/profile/ HTTP/1.1" 200 214
+INFO 2025-04-06 14:44:41,130 basehttp 26880 8220 "GET /api/articles/?author=undefined HTTP/1.1" 200 52
+INFO 2025-04-06 14:44:46,213 basehttp 26880 18944 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 52
+INFO 2025-04-06 14:44:46,417 basehttp 26880 12508 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 52
+INFO 2025-04-06 15:25:34,642 autoreload 26880 25324 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\articles\views.py changed, reloading.
+INFO 2025-04-06 15:25:36,722 autoreload 21656 26916 Watching for file changes with StatReloader
+INFO 2025-04-06 15:25:40,660 autoreload 21656 26916 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\articles\views.py changed, reloading.
+INFO 2025-04-06 15:25:41,998 autoreload 15240 26776 Watching for file changes with StatReloader
+INFO 2025-04-06 15:26:26,273 autoreload 15240 26776 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\core\utils.py changed, reloading.
+INFO 2025-04-06 15:26:27,339 autoreload 21948 5968 Watching for file changes with StatReloader
+INFO 2025-04-06 15:26:31,985 autoreload 21948 5968 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\core\utils.py changed, reloading.
+INFO 2025-04-06 15:26:32,930 autoreload 18700 6056 Watching for file changes with StatReloader
+INFO 2025-04-06 15:28:44,026 autoreload 18700 6056 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\core\utils.py changed, reloading.
+INFO 2025-04-06 15:28:45,126 autoreload 4868 17248 Watching for file changes with StatReloader
+INFO 2025-04-06 15:29:58,878 autoreload 4868 17248 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\blog_project\settings.py changed, reloading.
+INFO 2025-04-06 15:29:59,869 autoreload 26056 26732 Watching for file changes with StatReloader
+INFO 2025-04-06 15:30:04,406 autoreload 26056 26732 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\blog_project\settings.py changed, reloading.
+INFO 2025-04-06 15:30:05,453 autoreload 9212 10076 Watching for file changes with StatReloader
+INFO 2025-04-06 15:32:33,635 autoreload 9212 10076 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\articles\views.py changed, reloading.
+INFO 2025-04-06 15:32:34,537 autoreload 4776 15084 Watching for file changes with StatReloader
+INFO 2025-04-06 15:33:21,200 autoreload 4776 15084 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\articles\views.py changed, reloading.
+INFO 2025-04-06 15:33:22,104 autoreload 25800 26552 Watching for file changes with StatReloader
+INFO 2025-04-06 15:33:42,337 autoreload 25800 26552 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\comments\views.py changed, reloading.
+INFO 2025-04-06 15:33:43,237 autoreload 12668 26700 Watching for file changes with StatReloader
+INFO 2025-04-06 15:34:34,082 autoreload 12668 26700 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\comments\views.py changed, reloading.
+INFO 2025-04-06 15:34:35,013 autoreload 7892 9680 Watching for file changes with StatReloader
+INFO 2025-04-06 15:34:47,426 autoreload 7892 9680 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\comments\views.py changed, reloading.
+INFO 2025-04-06 15:34:48,393 autoreload 8008 27536 Watching for file changes with StatReloader
+INFO 2025-04-06 15:35:22,658 autoreload 8008 27536 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\users\views.py changed, reloading.
+INFO 2025-04-06 15:35:23,597 autoreload 26976 13408 Watching for file changes with StatReloader
+INFO 2025-04-06 15:36:21,335 autoreload 26976 13408 C:\Users\lital\OneDrive\שולחן העבודה\module 5\django\djangoProject\django_blog_api\users\views.py changed, reloading.
+INFO 2025-04-06 15:36:22,217 autoreload 456 24764 Watching for file changes with StatReloader
+INFO 2025-04-06 15:39:08,061 basehttp 456 17044 "OPTIONS /api/articles/?limit=3&status=published HTTP/1.1" 200 0
+INFO 2025-04-06 15:39:08,063 basehttp 456 25992 "OPTIONS /api/articles/?limit=3&status=published HTTP/1.1" 200 0
+INFO 2025-04-06 15:39:08,605 basehttp 456 11724 "GET /api/articles/?limit=3&status=published HTTP/1.1" 200 52
+INFO 2025-04-06 15:42:19,751 basehttp 456 2636 "GET /api/profile/ HTTP/1.1" 200 214
+INFO 2025-04-06 15:42:19,762 basehttp 456 23668 "GET /api/articles/?author=7 HTTP/1.1" 200 52
+INFO 2025-04-06 15:42:19,841 basehttp 456 2636 "GET /api/profile/ HTTP/1.1" 200 214

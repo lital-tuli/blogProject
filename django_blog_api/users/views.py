@@ -1,4 +1,3 @@
-# django_blog_api/users/views.py
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -11,6 +10,11 @@ from .models import Profile
 from django.shortcuts import get_object_or_404
 from core.utils import error_response
 from django.db import transaction
+from rest_framework.throttling import UserRateThrottle, AnonRateThrottle, ScopedRateThrottle
+
+
+class AuthRateThrottle(ScopedRateThrottle):
+    scope = 'auth'
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -55,32 +59,32 @@ def profile_detail(request, pk=None):
         return Response(serializer.data)
 
 class RegisterView(APIView):
-  
     permission_classes = [AllowAny]
+    throttle_classes = [AuthRateThrottle]
     
-   # In users/views.py - RegisterView
-@transaction.atomic
-def post(self, request):
-    serializer = UserSerializer(data=request.data)
-    if not serializer.is_valid():
-        return error_response(
-            "Invalid registration data", 
-            status.HTTP_400_BAD_REQUEST,
-            serializer.errors
-        )
+    # In users/views.py - RegisterView
+    @transaction.atomic
+    def post(self, request):
+        serializer = UserSerializer(data=request.data)
+        if not serializer.is_valid():
+            return error_response(
+                "Invalid registration data", 
+                status.HTTP_400_BAD_REQUEST,
+                serializer.errors
+            )
+            
+        user = serializer.save()
         
-    user = serializer.save()
-    
-    # Add user to the 'users' group
-    users_group, _ = Group.objects.get_or_create(name='users')
-    user.groups.add(users_group)
-    
-    # Generate tokens
-    refresh = RefreshToken.for_user(user)
-    
-    return Response({
-        'user': serializer.data,
-        'refresh': str(refresh),
-        'access': str(refresh.access_token),
-        'message': 'Registration successful'
-    }, status=status.HTTP_201_CREATED)
+        # Add user to the 'users' group
+        users_group, _ = Group.objects.get_or_create(name='users')
+        user.groups.add(users_group)
+        
+        # Generate tokens
+        refresh = RefreshToken.for_user(user)
+        
+        return Response({
+            'user': serializer.data,
+            'refresh': str(refresh),
+            'access': str(refresh.access_token),
+            'message': 'Registration successful'
+        }, status=status.HTTP_201_CREATED)

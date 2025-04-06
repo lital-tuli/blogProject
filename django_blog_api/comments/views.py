@@ -7,8 +7,16 @@ from .models import Comment
 from .serializers import CommentSerializer
 from core.permissions import IsAdminOrAuthorOrReadOnly, IsOwnerOrReadOnly
 from core.utils import error_response
+from rest_framework.throttling import UserRateThrottle, AnonRateThrottle, ScopedRateThrottle
+
+"""
+Rate limiting throttle specifically for comments.
+"""
+class CommentRateThrottle(ScopedRateThrottle):
+    scope = 'comments'
 
 class CommentViewSet(viewsets.ModelViewSet):
+    throttle_classes = [AnonRateThrottle, UserRateThrottle, CommentRateThrottle]
     """
     ViewSet for handling comment operations.
     
