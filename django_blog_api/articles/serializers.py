@@ -1,4 +1,3 @@
-# django_blog_api/articles/serializers.py
 from rest_framework import serializers
 from taggit.serializers import TagListSerializerField, TaggitSerializer
 from .models import Article
@@ -12,6 +11,7 @@ class ArticleSerializer(TaggitSerializer, serializers.ModelSerializer):
     - author_username: The username of the article author
     - author_id: The ID of the article author
     - comment_count: The number of comments on this article
+    - status: The publication status of the article
     """
     tags = TagListSerializerField()
     author_username = serializers.ReadOnlyField(source='author.username')
@@ -21,7 +21,7 @@ class ArticleSerializer(TaggitSerializer, serializers.ModelSerializer):
     class Meta:
         model = Article
         fields = ('id', 'title', 'content', 'author', 'author_id', 'author_username', 
-                  'publication_date', 'updated_at', 'tags', 'comment_count')
+                  'publication_date', 'updated_at', 'tags', 'comment_count', 'status')
         read_only_fields = ('author', 'publication_date', 'updated_at')
 
     def get_comment_count(self, obj):
@@ -52,6 +52,17 @@ class ArticleSerializer(TaggitSerializer, serializers.ModelSerializer):
                 "Title must be at least 5 characters long"
             )
             
+        return value
+    
+    def validate_status(self, value):
+        """
+        Validates that the status is one of the allowed values.
+        """
+        allowed_statuses = ['draft', 'published', 'archived']
+        if value not in allowed_statuses:
+            raise serializers.ValidationError(
+                f"Status must be one of: {', '.join(allowed_statuses)}"
+            )
         return value
     
     def validate_content(self, value):

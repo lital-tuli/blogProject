@@ -29,22 +29,18 @@ class CommentViewSet(viewsets.ModelViewSet):
         Custom permissions based on action:
         - Anyone can view comments (list, retrieve)
         - Authenticated users can create comments and replies
-        - Only admins can delete a comment (not the comment author)
+        - Only admins can delete a comment
         - Only the author can update their own comments
         """
         if self.action in ['list', 'retrieve']:
             return [permissions.AllowAny()]
         elif self.action in ['create', 'reply']:
-            return [permissions.IsAuthenticated()]
+            return [permissions.IsAuthenticated()]  # This should allow any authenticated user to create comments
         elif self.action == 'destroy':
-            # Change this:
-            # return [IsAdminOrAuthorOrReadOnly()]
-            # To this (admin only):
             return [permissions.IsAdminUser()]  # Only admins can delete
         elif self.action in ['update', 'partial_update']:
-            return [IsOwnerOrReadOnly()]  # Only author can update
-        return [permissions.IsAuthenticated()]
-    
+            return [IsOwnerOrReadOnly()]
+
     def get_queryset(self):
         """
         Filters comments by article if article_pk is provided in the URL.

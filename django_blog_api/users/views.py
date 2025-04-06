@@ -76,28 +76,29 @@ class RegisterView(APIView):
     """
     permission_classes = [AllowAny]
     
-    @transaction.atomic
-    def post(self, request):
-        serializer = UserSerializer(data=request.data)
-        if not serializer.is_valid():
-            return error_response(
-                "Invalid registration data", 
-                status.HTTP_400_BAD_REQUEST,
-                serializer.errors
-            )
-            
-        user = serializer.save()
+   # In users/views.py - RegisterView
+@transaction.atomic
+def post(self, request):
+    serializer = UserSerializer(data=request.data)
+    if not serializer.is_valid():
+        return error_response(
+            "Invalid registration data", 
+            status.HTTP_400_BAD_REQUEST,
+            serializer.errors
+        )
         
-        # Add user to the 'users' group
-        users_group, _ = Group.objects.get_or_create(name='users')
-        user.groups.add(users_group)
-        
-        # Generate tokens
-        refresh = RefreshToken.for_user(user)
-        
-        return Response({
-            'user': serializer.data,
-            'refresh': str(refresh),
-            'access': str(refresh.access_token),
-            'message': 'Registration successful'
-        }, status=status.HTTP_201_CREATED)
+    user = serializer.save()
+    
+    # Add user to the 'users' group
+    users_group, _ = Group.objects.get_or_create(name='users')
+    user.groups.add(users_group)
+    
+    # Generate tokens
+    refresh = RefreshToken.for_user(user)
+    
+    return Response({
+        'user': serializer.data,
+        'refresh': str(refresh),
+        'access': str(refresh.access_token),
+        'message': 'Registration successful'
+    }, status=status.HTTP_201_CREATED)

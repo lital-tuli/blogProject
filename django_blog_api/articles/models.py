@@ -38,9 +38,23 @@ class Article(models.Model):
         blank=True,
         help_text="Optional tags to categorize the article"
     )
+    STATUS_CHOICES = (
+        ('draft', 'Draft'),
+        ('published', 'Published'),
+        ('archived', 'Archived'),
+    )
+    status = models.CharField(
+        max_length=10,
+        choices=STATUS_CHOICES,
+        default='draft',
+        help_text="Publication status of the article"
+    )
 
     def __str__(self):
         return f"{self.title} by {self.author.username}"
+
+    def get_tags_display(self):
+        return ', '.join(tag.name for tag in self.tags.all())
 
     class Meta:
         ordering = ['-publication_date']

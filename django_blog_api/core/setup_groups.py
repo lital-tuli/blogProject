@@ -28,6 +28,7 @@ def create_user_groups():
         codename='add_comment',
         content_type=comment_content_type
     )
+   
     view_comment_perm = Permission.objects.get(
         codename='view_comment',
         content_type=comment_content_type
@@ -40,6 +41,7 @@ def create_user_groups():
         codename='view_article',
         content_type=article_content_type
     )
+    
     
     users_group.permissions.add(view_article_perm)
     users_group.permissions.add(add_comment_perm)
