@@ -1,5 +1,21 @@
 from rest_framework import permissions
 
+class EditorOrAdminPermissionMixin:
+    """
+    Mixin to check if user is editor or admin.
+    """
+    def is_editor_or_admin(self, user):
+        return (
+            user.is_authenticated and 
+            (user.is_staff or user.groups.filter(name__in=['editors', 'management']).exists())
+        )
+        
+    def is_admin(self, user):
+        return (
+            user.is_authenticated and 
+            (user.is_staff or user.groups.filter(name='management').exists())
+        )
+
 class IsAdminUser(permissions.BasePermission):
     """
     Allows access only to admin users.
@@ -7,37 +23,17 @@ class IsAdminUser(permissions.BasePermission):
     def has_permission(self, request, view):
         return bool(request.user and request.user.is_authenticated and request.user.is_staff) 
     
-class IsAdminUserOrReadOnly(permissions.BasePermission):
-    """
-    Allow read access to all users, but only write access to admin users or editors.
-    
-    Admin users are defined as either:
-    1. Users with is_staff=True
-    2. Users belonging to the 'management' or 'editors' groups
-    """
+class IsAdminUserOrReadOnly(permissions.BasePermission, EditorOrAdminPermissionMixin):
+    """Allow read access to all users, but only write access to admin users or editors."""
     def has_permission(self, request, view):
-        # Allow read-only methods for all users
         if request.method in permissions.SAFE_METHODS:
             return True
-        
-        # Allow write access if user is authenticated and is admin/editor
-        if request.user.is_authenticated:
-            # Check if user is staff or belongs to the right groups
-            return (request.user.is_staff or 
-                    request.user.groups.filter(name__in=['editors', 'management']).exists())
-        return False
+        return self.is_editor_or_admin(request.user)
     
     def has_object_permission(self, request, view, obj):
-        # Allow read-only methods for all users
         if request.method in permissions.SAFE_METHODS:
             return True
-        
-        # Allow write access if user is authenticated and is admin/editor
-        if request.user.is_authenticated:
-            # Check if user is staff or belongs to the right groups
-            return (request.user.is_staff or 
-                    request.user.groups.filter(name__in=['editors', 'management']).exists())
-        return False
+        return self.is_editor_or_admin(request.user)
 
 class IsAdminOrAuthorOrReadOnly(permissions.BasePermission):
     """
@@ -86,3 +82,19 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
         
         # Write permissions are only allowed to the author
         return obj.author == request.user
+    
+    class EditorOrAdminPermissionMixin:
+        """
+        Mixin to check if user is editor or admin.
+        """
+        def is_editor_or_admin(self, user):
+            return (
+                user.is_authenticated and 
+                (user.is_staff or user.groups.filter(name__in=['editors', 'management']).exists())
+            )
+            
+        def is_admin(self, user):
+            return (
+                user.is_authenticated and 
+                (user.is_staff or user.groups.filter(name='management').exists())
+            )

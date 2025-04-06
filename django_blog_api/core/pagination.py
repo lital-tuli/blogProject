@@ -15,15 +15,17 @@ class StandardResultsSetPagination(PageNumberPagination):
     page_size_query_param = 'page_size'
     max_page_size = 100
     
-    def get_paginated_response(self, data):
-        """
-        Enhanced pagination response with extra metadata.
-        """
-        return Response({
-            'total_pages': self.page.paginator.num_pages,
-            'count': self.page.paginator.count,
-            'next': self.get_next_link(),
-            'previous': self.get_previous_link(),
-            'current_page': self.page.number,
-            'results': data
-        })
+def get_paginated_response(self, data):
+    """
+    Enhanced pagination response with extra metadata.
+    """
+    return Response({
+        'total_pages': self.page.paginator.num_pages,
+        'count': self.page.paginator.count,
+        'next': self.get_next_link(),
+        'previous': self.get_previous_link(),
+        'current_page': self.page.number,
+        'has_next': self.page.has_next(),
+        'has_previous': self.page.has_previous(),
+        'results': data
+    })

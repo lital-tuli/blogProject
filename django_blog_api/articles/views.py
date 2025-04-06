@@ -40,23 +40,34 @@ class ArticleViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         """
         Optimized queryset with select_related and prefetch_related.
-        Handles filtering by tag and author.
         """
-        queryset = Article.objects.select_related('author').prefetch_related('tags')
+        queryset = Article.objects.select_related('author').prefetch_related(
+            'tags',
+            Prefetch('comments', queryset=Comment.objects.select_related('author'))
+        )
         
         # Add comment count annotation
-        queryset = queryset.annotate(comment_count=Count('comments'))
+        queryset = queryset.annotate(comment_count=Count('comments', distinct=True))
         
-        # Handle specific tag filtering
+        # Handle filtering
         tag = self.request.query_params.get('tag', None)
         if tag:
             queryset = queryset.filter(tags__name__icontains=tag).distinct()
             
-        # Handle author filtering
         author = self.request.query_params.get('author', None)
         if author:
             queryset = queryset.filter(author__username__icontains=author)
             
+        status_param = self.request.query_params.get('status', None)
+        if status_param and self.request.user.is_authenticated and (
+            self.request.user.is_staff or 
+            self.request.user.groups.filter(name__in=['editors', 'management']).exists()
+        ):
+            queryset = queryset.filter(status=status_param)
+        else:
+            # Non-admins/editors can only see published articles
+            queryset = queryset.filter(status='published')
+                
         return queryset
     
     def perform_create(self, serializer):

@@ -38,6 +38,12 @@ class Article(models.Model):
         blank=True,
         help_text="Optional tags to categorize the article"
     )
+    featured_image = models.ImageField(
+        upload_to='article_images/', 
+        null=True, 
+        blank=True,
+        help_text="Featured image for the article"
+    )
     STATUS_CHOICES = (
         ('draft', 'Draft'),
         ('published', 'Published'),

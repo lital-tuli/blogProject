@@ -15,13 +15,7 @@ from django.db import transaction
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def get_user_profile(request):
-    """
-    Get the current user's profile
     
-    URL: /api/auth/user/
-    Method: GET
-    Auth required: Yes
-    """
     user = request.user
     serializer = UserSerializer(user)
     return Response(serializer.data)
@@ -29,14 +23,8 @@ def get_user_profile(request):
 @api_view(['GET', 'PUT'])
 @permission_classes([IsAuthenticated])
 def profile_detail(request, pk=None):
-    """
-    Get or update a user profile
     
-    URL: /api/auth/profile/ - Current user's profile
-    URL: /api/auth/profile/{pk}/ - Specific user's profile
-    Methods: GET, PUT
-    Auth required: Yes (PUT only allowed for own profile)
-    """
+  
     # If no pk is provided, use the current user's profile
     if pk is None:
         profile = request.user.profile
@@ -67,13 +55,7 @@ def profile_detail(request, pk=None):
         return Response(serializer.data)
 
 class RegisterView(APIView):
-    """
-    Register a new user
-    
-    URL: /api/auth/register/
-    Method: POST
-    Auth required: No
-    """
+  
     permission_classes = [AllowAny]
     
    # In users/views.py - RegisterView
