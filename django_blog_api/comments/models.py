@@ -1,20 +1,40 @@
 from django.db import models
-from django.core.validators import MaxLengthValidator, MinLengthValidator
-from articles.models import Article
 from django.contrib.auth.models import User
+from django.core.validators import MinLengthValidator
+from articles.models import Article
 
 class Comment(models.Model):
-    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments')
-    content = models.TextField(
-        validators=[
-            MinLengthValidator(5),
-            MaxLengthValidator(1000)
-        ]
+    article = models.ForeignKey(
+        Article, 
+        on_delete=models.CASCADE, 
+        related_name='comments',
+        help_text="The article this comment belongs to"
     )
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-    publish_date = models.DateTimeField(auto_now_add=True)
-    updated_date = models.DateTimeField(auto_now=True)
-    reply_to = models.ForeignKey('self', on_delete=models.CASCADE, default=None, null=True, blank=True, related_name='replies')
+    content = models.TextField(
+        validators=[MinLengthValidator(2)],
+        help_text="Comment content must be at least 2 characters long"
+    )
+    author = models.ForeignKey(
+        User, 
+        on_delete=models.CASCADE, 
+        related_name='comments',
+        help_text="The user who created this comment"
+    )
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        help_text="Date and time when the comment was created"
+    )
+    reply_to = models.ForeignKey(
+        'self', 
+        on_delete=models.CASCADE, 
+        null=True, 
+        blank=True, 
+        related_name='replies',
+        help_text="The parent comment this comment is replying to, if any"
+    )
+
+    class Meta:
+        ordering = ['created_at']
 
     def __str__(self):
         return f'Comment by {self.author.username} on {self.article.title}'

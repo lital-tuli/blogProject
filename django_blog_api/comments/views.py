@@ -1,123 +1,88 @@
-from rest_framework.viewsets import ModelViewSet
+from rest_framework import viewsets, permissions, status
 from rest_framework.response import Response
+from rest_framework.exceptions import NotFound, MethodNotAllowed
 from .models import Comment
-from articles.models import Article
 from .serializers import CommentSerializer
-from utils.permissions import AnyUser, IsOwner, IsAdminUser
-from rest_framework.exceptions import MethodNotAllowed, NotFound
-from rest_framework import status
-from django.utils.functional import SimpleLazyObject
-from rest_framework.pagination import PageNumberPagination
+from articles.models import Article
+from utils.permissions import IsAdminUser, IsOwner, AnyUser
 
-class CommentPagination(PageNumberPagination):
-    page_size = 10  # Default number of comments per page
-    page_size_query_param = 'page_size'
-    max_page_size = 100
-
-class CommentViewSet(ModelViewSet):
+class CommentViewSet(viewsets.ModelViewSet):
+    """
+    A viewset for viewing and editing comments.
+    """
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
-    permission_classes = []  # Will be overridden based on action
-    pagination_class = CommentPagination
-
+    
     def get_queryset(self):
         """
         Filter comments based on article_id if provided in the URL.
+        Returns only root comments (not replies) for better organization.
         """
         article_id = self.kwargs.get('article_id')
         if article_id:
             if not Article.objects.filter(id=article_id).exists():
-                raise NotFound({"detail": "Article not found."})  
-            return Comment.objects.filter(article=article_id)
-        return Comment.objects.all()
-
+                raise NotFound(detail="Article not found.")
+            return Comment.objects.filter(article_id=article_id, reply_to=None)
+        return Comment.objects.filter(reply_to=None)
+    
     def get_permissions(self):
         """
-        Instantiates and returns the list of permissions that this view requires.
+        Instantiates and returns the list of permissions for this view.
         """
         if self.action == 'create':
-            self.permission_classes = [AnyUser]  # Any authenticated user can create a comment
-        elif self.action == 'destroy':
-            self.permission_classes = [IsAdminUser]  # Only admin can delete comments
+            permission_classes = [permissions.IsAuthenticated, AnyUser]
         elif self.action in ['update', 'partial_update']:
-            self.permission_classes = [IsOwner]  # Only comment owner can update comments
-        return super().get_permissions()
-
+            permission_classes = [IsOwner]
+        elif self.action == 'destroy':
+            permission_classes = [IsAdminUser]
+        else:  # 'list', 'retrieve'
+            permission_classes = [permissions.AllowAny]
+        return [permission() for permission in permission_classes]
+    
     def create(self, request, *args, **kwargs):
         """
-        Create a new comment for an article.
+        Create a new comment for a specific article.
         """
-        if request.parser_context["kwargs"].get("article_id") is None:
+        article_id = kwargs.get('article_id')
+        if not article_id:
             return Response(
-                {"error": "Direct comment creation is not allowed. Use /api/articles/{article_id}/comments/ instead."},
-                status=status.HTTP_400_BAD_REQUEST,
+                {"error": "Article ID is required to create a comment."},
+                status=status.HTTP_400_BAD_REQUEST
             )
-            
+        
         try:
-            article = Article.objects.get(id=self.kwargs['article_id'])
+            article = Article.objects.get(id=article_id)
         except Article.DoesNotExist:
-            raise NotFound({"detail": "Article not found."})
-            
-        user = request.user
-        if isinstance(user, SimpleLazyObject):
-            user = user._wrapped  
-            
-        data = request.data.copy()
-        data['author'] = user.id  
-
-        serializer = self.get_serializer(data=data)
+            raise NotFound(detail="Article not found.")
+        
+        serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        serializer.save(article=article, author=user)
-
-        return Response({"detail": "Comment created successfully.", "comment": serializer.data}, status=status.HTTP_201_CREATED)
-
-    def list(self, request, *args, **kwargs):
-        """
-        List comments with nested replies structure.
-        """
-        response = super().list(request, *args, **kwargs)
-        comments = response.data.get('results', [])
+        serializer.save(author=request.user, article=article)
         
-        # Organize into dictionary for easy lookup
-        comments_dict = {comment["id"]: comment for comment in comments}
-        
-        # Set up the root comments and organize replies
-        root_comments = []
-        for comment in comments:
-            parent_id = comment.get('reply_to')
-            if parent_id is None:
-                root_comments.append(comment)
-            else:
-                parent = comments_dict.get(parent_id)
-                if parent:
-                    if "replies" not in parent:
-                        parent["replies"] = []
-                    parent["replies"].append(comment)
-                    
-        response.data = root_comments
-        return response
-
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
+    def update(self, request, *args, **kwargs):
+        """
+        Disallow full update (PUT method). Only partial updates allowed.
+        """
+        raise MethodNotAllowed("PUT", detail="Full update is not allowed. Use PATCH instead.")
+    
     def partial_update(self, request, *args, **kwargs):
         """
         Partially update a comment (only content field allowed).
         """
         instance = self.get_object()
         data = request.data
-
+        
         # Check if there are any fields other than 'content'
         if set(data.keys()) - {'content'}:
-            return Response({"detail": "Only 'content' field is allowed to be updated."}, status=400)
-
-        if 'content' in data:
-            instance.content = data['content']
-            instance.save()
-            serializer = self.get_serializer(instance)
-            return Response(serializer.data, status=200)
-
-        return Response({"detail": "Content field is required."}, status=400)
-
-    def update(self, request, *args, **kwargs):
-        """
-        Disallow full update (PUT) method.
-        """
-        raise MethodNotAllowed("PUT", detail="Full update is not allowed. Use PATCH instead")
+            return Response(
+                {"detail": "Only 'content' field is allowed to be updated."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        serializer = self.get_serializer(instance, data=data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        
+        return Response(serializer.data)
