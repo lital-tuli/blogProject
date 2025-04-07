@@ -1,129 +1,91 @@
-from django.conf import settings
-from rest_framework import status
-from rest_framework.response import Response
-from rest_framework.views import APIView
-from rest_framework.decorators import api_view, permission_classes, action
-from rest_framework.permissions import AllowAny, IsAuthenticated
-from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework.viewsets import ViewSet
+from rest_framework.decorators import action
 from django.contrib.auth.models import User, Group
-from .serializers import UserSerializer, ProfileSerializer
-from .models import Profile
-from django.shortcuts import get_object_or_404
-from core.utils import error_response
-from django.db import transaction
-from rest_framework.throttling import UserRateThrottle, AnonRateThrottle, ScopedRateThrottle
+from .serializers import UserSerializer, LoginSerializer, UserRegistrationSerializer
+from rest_framework.response import Response
+from rest_framework import status
+from django.contrib.auth import authenticate
+from rest_framework_simplejwt.tokens import RefreshToken
+from utils.permissions import IsAdminUser
 
+class UserViewSet(ViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = []
 
-class AuthRateThrottle(ScopedRateThrottle):
-    scope = 'auth'
-
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])
-def get_user_profile(request):
-    
-    user = request.user
-    serializer = UserSerializer(user)
-    return Response(serializer.data)
-
-@api_view(['GET', 'PUT'])
-@permission_classes([IsAuthenticated])
-def profile_detail(request, pk=None):
-    
-  
-    # If no pk is provided, use the current user's profile
-    if pk is None:
-        profile = request.user.profile
-    else:
-        profile = get_object_or_404(Profile, user__id=pk)
-    
-    if request.method == 'GET':
-        serializer = ProfileSerializer(profile)
-        return Response(serializer.data)
-    
-    # Only allow updating your own profile
-    if request.method == 'PUT':
-        if profile.user != request.user:
-            return error_response(
-                "You can only update your own profile.",
-                status.HTTP_403_FORBIDDEN
-            )
-        
-        serializer = ProfileSerializer(profile, data=request.data, partial=True)
-        if not serializer.is_valid():
-            return error_response(
-                "Invalid profile data", 
-                status.HTTP_400_BAD_REQUEST,
-                serializer.errors
-            )
-            
-        serializer.save()
+    def list(self, request):
+        """
+        Returns a list of users (admin only).
+        """
+        self.permission_classes = [IsAdminUser]
+        self.check_permissions(request)  
+        users = User.objects.all()
+        serializer = UserSerializer(users, many=True)
         return Response(serializer.data)
 
-class RegisterView(APIView):
-    permission_classes = [AllowAny]
-    throttle_classes = [AuthRateThrottle]
-    
-    # In users/views.py - RegisterView
-    @transaction.atomic
-    def post(self, request):
-        serializer = UserSerializer(data=request.data)
-        if not serializer.is_valid():
-            return error_response(
-                "Invalid registration data", 
-                status.HTTP_400_BAD_REQUEST,
-                serializer.errors
+    @action(methods=['post'], detail=False)
+    def register(self, request):
+        """
+        Register a new user and add them to the 'users' group.
+        """
+        serializer = UserRegistrationSerializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.save()
+            
+            # Add user to the 'users' group
+            users_group, _ = Group.objects.get_or_create(name='users')
+            user.groups.add(users_group)
+            
+            # Generate JWT tokens
+            token = RefreshToken.for_user(user)
+            token['groups'] = [group.name for group in user.groups.all()]
+            token['username'] = user.username
+            
+            return Response({
+                "user": {
+                    "id": user.id,
+                    "username": user.username,
+                    "user_group": "users"  # Default group for new users
+                },
+                "refresh": str(token),
+                "access": str(token.access_token),
+            }, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @action(methods=['post'], detail=False)
+    def login(self, request):
+        """
+        Authenticate user and return JWT tokens.
+        """
+        serializer = LoginSerializer(data=request.data)
+        if serializer.is_valid():
+            user = authenticate(
+                request, 
+                username=serializer.validated_data['username'],
+                password=serializer.validated_data['password']
             )
             
-        user = serializer.save()
-        
-        # Add user to the 'users' group
-        users_group, _ = Group.objects.get_or_create(name='users')
-        user.groups.add(users_group)
-        
-        # Generate tokens
-        refresh = RefreshToken.for_user(user)
-        
-        return Response({
-    'user': {
-        'id': user.id,
-        'username': user.username,
-        'email': user.email,
-    },
-    'refresh': str(refresh),
-    'access': str(refresh.access_token),
-    'message': 'Registration successful'
-}, status=status.HTTP_201_CREATED)
-
-@api_view(['POST'])
-@permission_classes([IsAuthenticated])
-def deactivate_account(request):
-    """
-    Deactivate the current user's account.
-    This doesn't delete the account but makes it inactive.
-    """
-    user = request.user
-    
-    # Require password confirmation for security
-    password = request.data.get('password', '')
-    if not user.check_password(password):
-        return error_response(
-            "Current password is incorrect", 
-            status.HTTP_400_BAD_REQUEST
-        )
-    
-    # Deactivate the account
-    user.is_active = False
-    user.save()
-    
-    # Blacklist any existing tokens
-    if 'rest_framework_simplejwt.token_blacklist' in settings.INSTALLED_APPS:
-        # Get user's refresh tokens
-        from rest_framework_simplejwt.token_blacklist.models import OutstandingToken, BlacklistedToken
-        outstanding_tokens = OutstandingToken.objects.filter(user=user)
-        for token in outstanding_tokens:
-            if not token.blacklisted:
-                BlacklistedToken.objects.create(token=token)
-    
-    return Response({
-        "message": "Your account has been deactivated. You can contact support to reactivate it."
-    }, status=status.HTTP_200_OK)
+            if user:
+                token = RefreshToken.for_user(user)
+                groups = [group.name for group in user.groups.all()]
+                token['groups'] = groups
+                token['username'] = user.username
+                
+                # Determine primary user group for frontend permission checks
+                user_group = "users"  # Default
+                if "admin" in groups:
+                    user_group = "admin"
+                elif "editors" in groups:
+                    user_group = "editors"
+                
+                return Response({
+                    "user": {
+                        "id": user.id,
+                        "username": user.username,
+                        "user_group": user_group
+                    },
+                    "refresh": str(token),
+                    "access": str(token.access_token),
+                }, status=status.HTTP_200_OK)
+                
+        return Response({'message': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)

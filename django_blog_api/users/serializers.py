@@ -1,59 +1,39 @@
-from rest_framework import serializers
+from rest_framework.serializers import ModelSerializer, Serializer, CharField
 from django.contrib.auth.models import User
-from django.contrib.auth.password_validation import validate_password
-from rest_framework.validators import UniqueValidator
-from .models import Profile
 
-class ProfileSerializer(serializers.ModelSerializer):
+class UserSerializer(ModelSerializer):
     class Meta:
-        model = Profile
-        fields = ('bio', 'birth_date', 'profile_pic', 'created_at')
-
-class UserSerializer(serializers.ModelSerializer):
-    """
-    Serializer for the User model.
-    
-    Used for user registration and profile information.
-    """
-    email = serializers.EmailField(
-        required=True,
-        validators=[UniqueValidator(queryset=User.objects.all())]
-    )
-    password = serializers.CharField(
-        write_only=True, 
-        required=True, 
-        validators=[validate_password]
-    )
-    password2 = serializers.CharField(write_only=True, required=True)
-    profile = ProfileSerializer(required=False, read_only=True)
-    
-class Meta:
-    model = User
-    fields = ('id', 'username', 'email', 'password', 'password2', 'profile')
-    extra_kwargs = {
-        'username': {'required': True},
-        'password': {'write_only': True},
-        'password2': {'write_only': True},
-    }
-    
-    def validate(self, attrs):
-        """
-        Validates that password and password2 match.
-        """
-        if attrs['password'] != attrs['password2']:
-            raise serializers.ValidationError(
-                {"password": "Password fields didn't match."}
-            )
-        return attrs
+        model = User
+        fields = ['id', 'username', 'email', 'password', 'first_name', 'last_name']
+        extra_kwargs = {'password': {'write_only': True}}
     
     def create(self, validated_data):
-        """
-        Creates a new user with encrypted password and removes password2 field.
-        """
-        validated_data.pop('password2')
-        user = User.objects.create_user(
-            username=validated_data['username'],
-            email=validated_data['email'],
-            password=validated_data['password']
-        )
+        user = User.objects.create_user(**validated_data)
+        return user
+
+class LoginSerializer(Serializer):
+    username = CharField()
+    password = CharField(write_only=True)
+
+class UserRegistrationSerializer(ModelSerializer):
+    """Serializer for user registration with password confirmation."""
+    password_confirm = CharField(write_only=True)
+    
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password', 'password_confirm', 'first_name', 'last_name']
+        extra_kwargs = {'password': {'write_only': True}}
+        
+    def validate(self, data):
+        """Validate that passwords match."""
+        if data.get('password') != data.get('password_confirm'):
+            raise serializers.ValidationError("Passwords don't match")
+        return data
+        
+    def create(self, validated_data):
+        """Create a new user instance."""
+        # Remove the password_confirm field as it's not needed in User creation
+        validated_data.pop('password_confirm', None)
+        
+        user = User.objects.create_user(**validated_data)
         return user
