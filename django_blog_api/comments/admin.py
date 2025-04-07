@@ -3,10 +3,9 @@ from .models import Comment
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('truncated_content', 'author', 'article', 'publish_date', 'reply_to')
-    list_filter = ('publish_date', 'author', 'article')
+    list_display = ('truncated_content', 'author', 'article', 'created_at', 'reply_to')
+    list_filter = ('created_at', 'author', 'article')
     search_fields = ('content', 'author__username', 'article__title')
-    readonly_fields = ('publish_date', 'updated_date')
     
     def truncated_content(self, obj):
         """Return truncated content for display in admin list view"""

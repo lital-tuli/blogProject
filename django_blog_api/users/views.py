@@ -1,4 +1,5 @@
-from rest_framework import generics, permissions, status
+from rest_framework import viewsets, generics, permissions, status
+from rest_framework import viewsets, permissions, status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -7,6 +8,14 @@ from django.contrib.auth import authenticate
 from .serializers import UserSerializer, UserRegistrationSerializer, LoginSerializer, ProfileSerializer
 from .models import Profile
 from utils.permissions import IsAdminUser
+
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    API endpoint for listing and retrieving users (admin only).
+    """
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [IsAdminUser]
 
 class RegisterView(generics.CreateAPIView):
     """
@@ -124,11 +133,3 @@ def deactivate_account(request):
         {'detail': 'Account deactivated successfully'}, 
         status=status.HTTP_200_OK
     )
-
-class UserViewSet(generics.ListAPIView):
-    """
-    API endpoint for listing users (admin only).
-    """
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    permission_classes = [IsAdminUser]
