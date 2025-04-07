@@ -1,3 +1,4 @@
+
 from rest_framework import viewsets, permissions, status
 from rest_framework.response import Response
 from rest_framework.exceptions import NotFound, MethodNotAllowed
@@ -34,7 +35,7 @@ class CommentViewSet(viewsets.ModelViewSet):
         elif self.action in ['update', 'partial_update']:
             permission_classes = [IsOwner]
         elif self.action == 'destroy':
-            permission_classes = [IsAdminUser]
+            permission_classes = [permissions.IsAuthenticated, IsOwner]  # Allow authors to delete their own comments
         else:  # 'list', 'retrieve'
             permission_classes = [permissions.AllowAny]
         return [permission() for permission in permission_classes]
@@ -65,7 +66,9 @@ class CommentViewSet(viewsets.ModelViewSet):
         """
         Disallow full update (PUT method). Only partial updates allowed.
         """
-        raise MethodNotAllowed("PUT", detail="Full update is not allowed. Use PATCH instead.")
+        if request.method == 'PUT':
+            raise MethodNotAllowed("PUT", detail="Full update is not allowed. Use PATCH instead.")
+        return self.partial_update(request, *args, **kwargs)
     
     def partial_update(self, request, *args, **kwargs):
         """
