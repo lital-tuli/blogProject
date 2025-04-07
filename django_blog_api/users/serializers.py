@@ -27,12 +27,14 @@ class UserSerializer(serializers.ModelSerializer):
     password2 = serializers.CharField(write_only=True, required=True)
     profile = ProfileSerializer(required=False, read_only=True)
     
-    class Meta:
-        model = User
-        fields = ('id', 'username', 'email', 'password', 'password2', 'profile')
-        extra_kwargs = {
-            'username': {'required': True}
-        }
+class Meta:
+    model = User
+    fields = ('id', 'username', 'email', 'password', 'password2', 'profile')
+    extra_kwargs = {
+        'username': {'required': True},
+        'password': {'write_only': True},
+        'password2': {'write_only': True},
+    }
     
     def validate(self, attrs):
         """

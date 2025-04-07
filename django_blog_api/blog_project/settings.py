@@ -250,7 +250,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Taggit settings
 TAGGIT_CASE_INSENSITIVE = True
 
-# Media files (user uploads)
+
+# Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# File upload settings
+FILE_UPLOAD_MAX_MEMORY_SIZE = 5242880  # 5MB
+ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/gif']
+MAX_IMAGE_SIZE = 1024 * 1024 * 5  # 5MB

@@ -1,3 +1,4 @@
+from django.conf import settings
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -83,8 +84,46 @@ class RegisterView(APIView):
         refresh = RefreshToken.for_user(user)
         
         return Response({
-            'user': serializer.data,
-            'refresh': str(refresh),
-            'access': str(refresh.access_token),
-            'message': 'Registration successful'
-        }, status=status.HTTP_201_CREATED)
+    'user': {
+        'id': user.id,
+        'username': user.username,
+        'email': user.email,
+    },
+    'refresh': str(refresh),
+    'access': str(refresh.access_token),
+    'message': 'Registration successful'
+}, status=status.HTTP_201_CREATED)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def deactivate_account(request):
+    """
+    Deactivate the current user's account.
+    This doesn't delete the account but makes it inactive.
+    """
+    user = request.user
+    
+    # Require password confirmation for security
+    password = request.data.get('password', '')
+    if not user.check_password(password):
+        return error_response(
+            "Current password is incorrect", 
+            status.HTTP_400_BAD_REQUEST
+        )
+    
+    # Deactivate the account
+    user.is_active = False
+    user.save()
+    
+    # Blacklist any existing tokens
+    if 'rest_framework_simplejwt.token_blacklist' in settings.INSTALLED_APPS:
+        # Get user's refresh tokens
+        from rest_framework_simplejwt.token_blacklist.models import OutstandingToken, BlacklistedToken
+        outstanding_tokens = OutstandingToken.objects.filter(user=user)
+        for token in outstanding_tokens:
+            if not token.blacklisted:
+                BlacklistedToken.objects.create(token=token)
+    
+    return Response({
+        "message": "Your account has been deactivated. You can contact support to reactivate it."
+    }, status=status.HTTP_200_OK)

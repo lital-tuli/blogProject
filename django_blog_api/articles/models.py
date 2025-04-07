@@ -1,7 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings
+from django.core.exceptions import ValidationError
+from django.core.validators import MinLengthValidator, FileExtensionValidator
 from taggit.managers import TaggableManager
-from django.core.validators import MinLengthValidator
+
 
 class Article(models.Model):
     """
@@ -33,34 +36,55 @@ class Article(models.Model):
     updated_at = models.DateTimeField(
         auto_now=True,
         help_text="Date and time when the article was last updated"
-    )
-    tags = TaggableManager(
-        blank=True,
-        help_text="Optional tags to categorize the article"
-    )
-    featured_image = models.ImageField(
-        upload_to='article_images/', 
-        null=True, 
-        blank=True,
-        help_text="Featured image for the article"
-    )
-    STATUS_CHOICES = (
-        ('draft', 'Draft'),
-        ('published', 'Published'),
-        ('archived', 'Archived'),
-    )
-    status = models.CharField(
-        max_length=10,
-        choices=STATUS_CHOICES,
-        default='draft',
-        help_text="Publication status of the article"
-    )
+)
+image = models.ImageField(
+    upload_to='article_images/',
+    validators=[
+        FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png', 'gif']),
+    ],
+    null=True,
+    blank=True
+)
+tags = TaggableManager(
+    blank=True,
+    help_text="Optional tags to categorize the article"
+)
+featured_image = models.ImageField(
+    upload_to='article_images/%Y/%m/', 
+    null=True, 
+    blank=True,
+    validators=[
+        FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png', 'gif']),
+    ],
+    help_text="Featured image for the article (max 5MB, jpg/png/gif only)"
+)
 
-    def __str__(self):
-        return f"{self.title} by {self.author.username}"
+STATUS_CHOICES = (
+    ('draft', 'Draft'),
+    ('published', 'Published'),
+    ('archived', 'Archived'),
+)
+status = models.CharField(
+    max_length=10,
+    choices=STATUS_CHOICES,
+    default='draft',
+    help_text="Publication status of the article"
+)
 
-    def get_tags_display(self):
-        return ', '.join(tag.name for tag in self.tags.all())
+def __str__(self):
+    return f"{self.title} by {self.author.username}"
 
-    class Meta:
-        ordering = ['-publication_date']
+def get_tags_display(self):
+    return ', '.join(tag.name for tag in self.tags.all())
+
+class Meta:
+    ordering = ['-publication_date']
+
+def clean(self):
+    super().clean()
+    if self.featured_image:
+        if self.featured_image.size > settings.MAX_IMAGE_SIZE:
+            raise ValidationError({
+                'featured_image': f'Image size must not exceed {settings.MAX_IMAGE_SIZE // (1024 * 1024)}MB'
+            })
+

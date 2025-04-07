@@ -72,28 +72,39 @@ class ArticleViewSet(viewsets.ModelViewSet):
         author = self.request.query_params.get('author', None)
         if author:
             queryset = queryset.filter(author__username__icontains=author)
-        
+
         # Handle date range filtering
         start_date = self.request.query_params.get('start_date', None)
         end_date = self.request.query_params.get('end_date', None)
-        
+
         if start_date:
             queryset = queryset.filter(publication_date__gte=start_date)
-        
+
         if end_date:
             queryset = queryset.filter(publication_date__lte=end_date)
-            
+
         # Handle status filtering based on user permissions
         status_param = self.request.query_params.get('status', None)
-        if status_param and self.request.user.is_authenticated and (
-            self.request.user.is_staff or 
-            self.request.user.groups.filter(name__in=['editors', 'management']).exists()
-        ):
-            queryset = queryset.filter(status=status_param)
-        else:
-            # Non-admins/editors can only see published articles
+
+        # Default to showing only published articles for non-authenticated users
+        if not self.request.user.is_authenticated:
             queryset = queryset.filter(status='published')
-            
+        # For authenticated users, respect the status filter if provided
+        elif status_param:
+            # Check if user has permissions to see non-published articles
+            if (self.request.user.is_staff or 
+                self.request.user.groups.filter(name__in=['editors', 'management']).exists()):
+                queryset = queryset.filter(status=status_param)
+            else:
+                # Regular users can only see published articles, even if they request others
+                queryset = queryset.filter(status='published')
+        else:
+            # If no status filter provided and user is authenticated
+            if not (self.request.user.is_staff or 
+                self.request.user.groups.filter(name__in=['editors', 'management']).exists()):
+                # Regular users can only see published articles
+                queryset = queryset.filter(status='published')
+
         # Handle search filtering
         search_query = self.request.query_params.get('search', None)
         if search_query:
@@ -103,7 +114,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
                 Q(tags__name__icontains=search_query) | 
                 Q(author__username__icontains=search_query)
             ).distinct()
-                
+
         return queryset
     
     @method_decorator(cache_page(60 * 15))  # Cache for 15 minutes
