@@ -22,13 +22,14 @@ class ArticleViewSet(viewsets.ModelViewSet):
         Instantiates and returns the list of permissions that this view requires.
         """
         if self.action == 'list' or self.action == 'retrieve':
+            # Allow anyone to view articles without authentication
             permission_classes = [permissions.AllowAny]
         elif self.action == 'create':
-            permission_classes = [IsAdminOrEditorUser]
+            permission_classes = [permissions.IsAuthenticated, IsAdminOrEditorUser]
         elif self.action in ['update', 'partial_update']:
-            permission_classes = [IsAdminOrEditorUser]
+            permission_classes = [permissions.IsAuthenticated, IsAdminOrEditorUser]
         elif self.action == 'destroy':
-            permission_classes = [IsAdminUser]
+            permission_classes = [permissions.IsAuthenticated, IsAdminUser]
         else:
             permission_classes = [permissions.IsAuthenticated]
         return [permission() for permission in permission_classes]
